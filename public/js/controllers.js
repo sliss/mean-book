@@ -20,7 +20,8 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
     $scope.$watch("orderProp", function() {
       console.log("orderprop changed to " + $scope.orderProp);
       
-
+      var legendLabelsHeight = 10;
+      var box_size = 30;
 
       switch($scope.orderProp) {
         case "name":
@@ -33,7 +34,6 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
             .style("fill", function(d) { return color(d.properties.victory_district); });
 
             var legend_width;
-          var box_size = 30;
 
           var legend = d3.select("legendBoxes").append("svg")
             .attr("width", 210)
@@ -41,7 +41,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
 
           var legend_labels = d3.select("legendLabels").append("svg")
             .attr("width", 231)
-            .attr("height", 25);     
+            .attr("height", legendLabelsHeight);     
 
           legend.selectAll("legend_box").data(data_domain).enter()
               .append('rect')
@@ -60,7 +60,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
                   .style("text-anchor", "left")
                   .attr('font-size','10px')
                   .attr('x', function(d, i) {return (20+i*box_size)})
-                .attr('y', 25)    
+                .attr('y', legendLabelsHeight)    
           ;  
           break;
 
@@ -73,7 +73,6 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
            d3.selectAll(".town")
             .style("fill", function(d) { return color(d.properties.POP2010 / d.properties.SHAPE_AREA * 2.58999e6); });
             var legend_width;
-          var box_size = 30;
 
           var legend = d3.select("legendBoxes").append("svg")
             .attr("width", 210)
@@ -81,7 +80,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
 
           var legend_labels = d3.select("legendLabels").append("svg")
             .attr("width", 231)
-            .attr("height", 25);     
+            .attr("height", legendLabelsHeight);     
 
           legend.selectAll("legend_box").data(data_domain).enter()
               .append('rect')
@@ -100,7 +99,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
                   .style("text-anchor", "left")
                   .attr('font-size','10px')
                   .attr('x', function(d, i) {return (20+i*box_size)})
-                .attr('y', 25)    
+                .attr('y', legendLabelsHeight)    
           ; 
           break;
 
@@ -116,7 +115,6 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
 
 
           var legend_width = 100;;
-          var box_size = 30;
 
           var legend = d3.select("legendBoxes").append("svg")
             .attr("width", 210)
@@ -124,7 +122,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
 
           var legend_labels = d3.select("legendLabels").append("svg")
             .attr("width", 231)
-            .attr("height", 25);     
+            .attr("height", legendLabelsHeight);     
 
           legend.selectAll("legend_box").data(data_domain).enter()
               .append('rect')
@@ -143,7 +141,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
                   .style("text-anchor", "left")
                   .attr('font-size','10px')
                   .attr('x', function(d, i) {return (20+i*box_size)})
-                .attr('y', 25)    
+                .attr('y', legendLabelsHeight)    
           ;  
           break; 
 
@@ -156,7 +154,6 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
            d3.selectAll(".town")
             .style("fill", function(d) { return color(d.properties.r_deviance); });
             var legend_width;
-          var box_size = 30;
 
           var legend = d3.select("legendBoxes").append("svg")
             .attr("width", 210)
@@ -164,7 +161,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
 
           var legend_labels = d3.select("legendLabels").append("svg")
             .attr("width", 231)
-            .attr("height", 25);     
+            .attr("height", legendLabelsHeight);     
 
           legend.selectAll("legend_box").data(data_domain).enter()
               .append('rect')
@@ -183,7 +180,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
                   .style("text-anchor", "left")
                   .attr('font-size','10px')
                   .attr('x', function(d, i) {return (20+i*box_size)})
-                .attr('y', 25)    
+                .attr('y', legendLabelsHeight)    
           ; 
           break;   
 
@@ -196,7 +193,6 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
            d3.selectAll(".town")
             .style("fill", function(d) { return color(d.properties.p_participation); });
             var legend_width;
-          var box_size = 30;
 
           var legend = d3.select("legendBoxes").append("svg")
             .attr("width", 210)
@@ -204,7 +200,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
 
           var legend_labels = d3.select("legendLabels").append("svg")
             .attr("width", 231)
-            .attr("height", 25);     
+            .attr("height", legendLabelsHeight);     
 
           legend.selectAll("legend_box").data(data_domain).enter()
               .append('rect')
@@ -223,7 +219,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
                   .style("text-anchor", "left")
                   .attr('font-size','10px')
                   .attr('x', function(d, i) {return (20+i*box_size)})
-                .attr('y', 25)    
+                .attr('y', legendLabelsHeight)    
           ; 
           break; 
 
@@ -236,7 +232,6 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
            d3.selectAll(".town")
             .style("fill", function(d) { return color(d.properties.p_unenrolled); });
             var legend_width;
-          var box_size = 30;
 
           var legend = d3.select("legendBoxes").append("svg")
             .attr("width", 210)
@@ -244,7 +239,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
 
           var legend_labels = d3.select("legendLabels").append("svg")
             .attr("width", 231)
-            .attr("height", 25);     
+            .attr("height", legendLabelsHeight);     
 
           legend.selectAll("legend_box").data(data_domain).enter()
               .append('rect')
@@ -263,7 +258,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
                   .style("text-anchor", "left")
                   .attr('font-size','10px')
                   .attr('x', function(d, i) {return (20+i*box_size)})
-                .attr('y', 25)    
+                .attr('y', legendLabelsHeight)    
           ; 
           break;  
 
@@ -276,7 +271,6 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
            d3.selectAll(".town")
             .style("fill", function(d) { return color(d.properties.p_republican); });
             var legend_width;
-          var box_size = 30;
 
           var legend = d3.select("legendBoxes").append("svg")
             .attr("width", 210)
@@ -284,7 +278,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
 
           var legend_labels = d3.select("legendLabels").append("svg")
             .attr("width", 231)
-            .attr("height", 25);     
+            .attr("height", legendLabelsHeight);     
 
           legend.selectAll("legend_box").data(data_domain).enter()
               .append('rect')
@@ -303,7 +297,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
                   .style("text-anchor", "left")
                   .attr('font-size','10px')
                   .attr('x', function(d, i) {return (20+i*box_size)})
-                .attr('y', 25)    
+                .attr('y', legendLabelsHeight)    
           ; 
  
           break;  
@@ -317,7 +311,6 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
            d3.selectAll(".town")
             .style("fill", function(d) { return color(d.properties.p_baker); });
             var legend_width;
-          var box_size = 30;
 
           var legend = d3.select("legendBoxes").append("svg")
             .attr("width", 210)
@@ -325,7 +318,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
 
           var legend_labels = d3.select("legendLabels").append("svg")
             .attr("width", 231)
-            .attr("height", 25);     
+            .attr("height", legendLabelsHeight);     
 
           legend.selectAll("legend_box").data(data_domain).enter()
               .append('rect')
@@ -344,7 +337,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
                   .style("text-anchor", "left")
                   .attr('font-size','10px')
                   .attr('x', function(d, i) {return (20+i*box_size)})
-                .attr('y', 25)    
+                .attr('y', legendLabelsHeight)    
           ; 
           break;    
 
@@ -357,7 +350,6 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
            d3.selectAll(".town")
             .style("fill", function(d) { return color(d.properties.p_patrick); });
             var legend_width;
-          var box_size = 30;
 
           var legend = d3.select("legendBoxes").append("svg")
             .attr("width", 210)
@@ -365,7 +357,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
 
           var legend_labels = d3.select("legendLabels").append("svg")
             .attr("width", 231)
-            .attr("height", 25);     
+            .attr("height", legendLabelsHeight);     
 
           legend.selectAll("legend_box").data(data_domain).enter()
               .append('rect')
@@ -384,7 +376,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
                   .style("text-anchor", "left")
                   .attr('font-size','10px')
                   .attr('x', function(d, i) {return (20+i*box_size)})
-                .attr('y', 25)    
+                .attr('y', legendLabelsHeight)    
           ; 
           break;     
 
@@ -400,7 +392,6 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
            d3.selectAll(".town")
             .style("fill", function(d) { return color(d.properties.unemployment_percentage); });
             var legend_width=300;
-          var box_size = 30;
 
           var legend = d3.select("legendBoxes").append("svg")
             .attr("width", legend_width)
@@ -408,7 +399,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
 
           var legend_labels = d3.select("legendLabels").append("svg")
             .attr("width", legend_width)
-            .attr("height", 25);     
+            .attr("height", legendLabelsHeight);     
 
           legend.selectAll("legend_box").data(data_domain).enter()
               .append('rect')
@@ -427,7 +418,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
                   .style("text-anchor", "left")
                   .attr('font-size','10px')
                   .attr('x', function(d, i) {return (5+i*box_size)})
-                .attr('y', 25)    
+                .attr('y', legendLabelsHeight)    
           ; 
           break;    
 
@@ -441,7 +432,6 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
            d3.selectAll(".town")
             .style("fill", function(d) { return color(Math.abs(d.properties.delta_local_aid_per_capita)); });
             var legend_width;
-          var box_size = 30;
 
           var legend = d3.select("legendBoxes").append("svg")
             .attr("width", 300)
@@ -449,7 +439,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
 
           var legend_labels = d3.select("legendLabels").append("svg")
             .attr("width", 300)
-            .attr("height", 25);     
+            .attr("height", legendLabelsHeight);     
 
           legend.selectAll("legend_box").data(data_domain).enter()
               .append('rect')
@@ -468,7 +458,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
                   .style("text-anchor", "left")
                   .attr('font-size','10px')
                   .attr('x', function(d, i) {return (2+i*(box_size))})
-                .attr('y', 25)    
+                .attr('y', legendLabelsHeight)    
           ; 
           break;   
 
@@ -482,7 +472,6 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
            d3.selectAll(".town")
             .style("fill", function(d) { return color(Math.abs(d.properties.local_aid_2013/d.properties.POP2010)); });
             var legend_width=270;
-          var box_size = 30;
 
           var legend = d3.select("legendBoxes").append("svg")
             .attr("width", legend_width)
@@ -490,7 +479,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
 
           var legend_labels = d3.select("legendLabels").append("svg")
             .attr("width", legend_width)
-            .attr("height", 25);     
+            .attr("height", legendLabelsHeight);     
 
           legend.selectAll("legend_box").data(data_domain).enter()
               .append('rect')
@@ -509,7 +498,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
                   .style("text-anchor", "left")
                   .attr('font-size','10px')
                   .attr('x', function(d, i) {return (i*box_size)})
-                .attr('y', 25)    
+                .attr('y', legendLabelsHeight)    
           ; 
           break;       
 
@@ -523,7 +512,6 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
             .style("fill", function(d) { return color(d.properties.victory_district); });
 
             var legend_width;
-          var box_size = 30;
 
           var legend = d3.select("legendBoxes").append("svg")
             .attr("width", 210)
@@ -531,7 +519,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
 
           var legend_labels = d3.select("legendLabels").append("svg")
             .attr("width", 231)
-            .attr("height", 25);     
+            .attr("height", legendLabelsHeight);     
 
           legend.selectAll("legend_box").data(data_domain).enter()
               .append('rect')
@@ -550,7 +538,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
                   .style("text-anchor", "left")
                   .attr('font-size','10px')
                   .attr('x', function(d, i) {return (20+i*box_size)})
-                .attr('y', 25)    
+                .attr('y', legendLabelsHeight)    
           ;  
           break;
       }

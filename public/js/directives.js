@@ -82,7 +82,11 @@ townBookDirectives.directive('myFirstDirective', function() {
 			      .datum(topojson.mesh(ma, ma.objects.MA_Towns, function(a, b) { return a !== b; }))
 			      .attr("class", "tract-border")
 			      .attr("d", path);  
-		
+			  console.log('render map complete');
+			  $('#mapLoadSpinner').hide();  
+			  $('#legend').show();  
+
+
 					});
 
 			//console.log(d3.select(".HINGHAM").enter().d.properties.SHAPE_AREA);

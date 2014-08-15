@@ -1,15 +1,6 @@
-@font-face {
-  font-family: JosefinSansRegular;
-  src: url("/fonts/Josefin-Sans/JosefinSans-Regular.ttf");
-  font-weight: 400;
-}
-
 body {
 	background-color:#D3EDF5 !important;
-	font-family: JosefinSansRegular, "Open Sans", sans-serif;
-}
-
-
+	font-family: 'Montserrat', sans-serif !important;}
 
 .container {
 	padding-bottom:10px;
@@ -19,7 +10,6 @@ body {
 	border-color:#6457F2;
 	border-width:10px;
 }
-
 
 #index_link {
 	display:inline;
@@ -45,6 +35,12 @@ legendLabels,legendBoxes {
 	position:relative;
 	left:-150px;
 	top:-150px;
+	font-family: sans-serif !important;
+}
+
+legendLabels{
+	top:-170px;
+
 }
 
 table {
