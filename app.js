@@ -17,8 +17,10 @@ var db = Mongoose.createConnection('localhost', 'mytestapp');
 // mongo schemas
 var TodoSchema = require('./models/Todo.js').TodoSchema;
 var TownSchema = require('./models/Todo.js').TownSchema;
+var CommentSchema = require('./models/Todo.js').CommentSchema;
 var Todo = db.model('todos', TodoSchema);
 var Town = db.model('towns', TownSchema);
+var Comment = db.model('comments', CommentSchema);
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -48,10 +50,12 @@ app.get('/towns.json', routes.get(Town));
 //app.put('/todo/:id.json', routes.update(Todo));
 app.put('/town/:id.json', routes.update(Town));
 
-app.post('/todo.json', routes.addTodo(Todo));
-app.post('/town.json', routes.addTown(Town));
+//app.post('/todo.json', routes.addTodo(Todo));
+app.post('/addComment', routes.addComment(Comment));
 app.post('/load_data', routes.loadData(Town));
 app.get('/', routes.index(Todo));
+app.post('/getComment', routes.getComment(Comment));
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

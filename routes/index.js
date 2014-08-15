@@ -17,6 +17,7 @@ exports.index = function(Todo) {
 };
 
 // get data from mongo.  called from controller.
+
 exports.get = function(Town) {
   return function(req, res) {
     console.log("route index: finding the towns in mongo");
@@ -27,6 +28,7 @@ exports.get = function(Town) {
     });
   }
 };
+
 /*exports.get = function(Todo) {
   return function(req, res) {
     console.log("finding the todos in mongo");
@@ -146,6 +148,50 @@ exports.addTown = function(Town) {
     });
     console.log(JSON.stringify(town));
   };
+};
+
+
+exports.addComment = function(Comment) {
+  return function(req, res) {
+    console.log('index.js/addComment');
+    var commentBody = {
+      townSlug: req.body.townSlug,
+      commentText: req.body.commentText,
+      timestamp: new Date().toISOString()
+    };
+
+    if(req.body._id){ //comment already exists, so overwrite
+      //commentBody._id = req.body._id;
+      console.log('update: replace.');
+    }
+
+    var queryValue = req.body.query_value;
+
+
+    var comment = new Comment(commentBody);
+    Comment.update({_id: queryValue},commentBody, {upsert:true},function(error, comment) {
+      if (error || !comment) {
+        res.json({ error : error });
+      } else {
+        res.json({ comment : comment });
+      }
+    });
+    console.log(JSON.stringify(comment));
+  };
+};
+
+exports.getComment = function(Model) {
+  return function(req, res) {
+    console.log("route index: finding the docs in mongo");
+    var queryAttribute = req.body.query_attribute;
+    var queryValue = req.body.query_value;
+
+    Model.findOne({townSlug: queryValue}, function(error, docs) {
+      console.log("get docs resp:",docs);
+      //res.send, but explicitely for JSON
+      res.json(docs);
+    });
+  }
 };
 
 exports.loadData = function(Town) {

@@ -6,6 +6,12 @@ exports.TodoSchema = new Mongoose.Schema({
   done : { type : Boolean, default : false }
 });
 
+exports.CommentSchema = new Mongoose.Schema({
+  townSlug : { type : String, required : true },
+  commentText : { type : String, required : true },
+  timestamp : { type : String, required : true }
+});
+
 var RegisteredPercentagesSchema = new Mongoose.Schema({
   democrat : { type : Number, required : false},
   green_rainbow : { type : Number, required : false},

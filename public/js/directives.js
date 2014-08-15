@@ -66,7 +66,7 @@ townBookDirectives.directive('myFirstDirective', function() {
 			    .data(topojson.feature(ma, ma.objects.MA_Towns).features)
 			  .enter()
 			  .append("a")
-			  	.attr("xlink:href", function(d) { return "/#/towns/" + d.properties.TOWN.toLowerCase(); })
+			  	.attr("xlink:href", function(d) { return "/#/towns/" + d.properties.TOWN.toLowerCase().replace(' ','_'); })
 			  	.attr("title", function(d) { return d.properties.TOWN; })
 			  .append("path")
 			    //.attr("class", function(d) { return "town " + d.properties.TOWN; })

@@ -565,16 +565,54 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
 
 townBookControllers.controller('TownDetailCtrl', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
+    console.log('detail control');
+
+    $scope.storeComment = {};
+    $scope.storeComment = function() {
+      console.log('saving comment to DB');
+      var input = document.getElementById("saveServer");
+      var slug = document.getElementById("hiddenSlug");
+
+      var body = {
+        townSlug: slug.innerHTML,
+        commentText: input.value,
+        query_value: $scope.comment_id
+      };
+
+      if($scope.comment_id){
+        body._id = $scope.comment_id;
+      }
+
+      $http.post('/addComment', body).success(function(comment) {
+        console.log('comment saved:', comment);
+        $scope.comment = comment.commentText;
+      });
+    }
+
   	var slug = $routeParams.townSlug;
     slug = slug.replace(".html","");
     $http.get('townJSON/' + slug + '.json').success(function(data) {
       $scope.town = data;
     });
+
+    //load comments
+    var body = {
+      query_attribute:'townSlug',
+      query_value:slug
+    };
+    console.log('get comments query body:',body);
+    $http.post('/getComment', body).success(function(comment) {
+      console.log('comment loaded:', comment);
+      $scope.comment = comment.commentText;
+      $scope.comment_id = comment._id;
+    });
+    //end load comments
+/*
     if(localStorage.getItem(slug))
     	$scope.comment = localStorage.getItem(slug);
     else
     	$scope.comment = '';
-
+*/
     var width = 200,
         height = 200,
         radius = Math.min(width, height) / 2;
