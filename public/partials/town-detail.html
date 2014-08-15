@@ -163,9 +163,16 @@
  
  <h2>Comments</h2>
   
-<textarea class="form-control" rows="4" cols="50" name="server" id="saveServer" > 
-{{comment}}
-</textarea>
+
+<div id="editBox" contenteditable="true">
+<style scoped>
+  #editBox { margin-bottom: 10px; }
+  [contenteditable="true"] { padding: 10px; outline: 2px dashed #CCC; }
+  [contenteditable="true"]:hover { outline: 2px dashed #0090D2;background-color: rgb(255, 255, 153); }
+</style>
+<p id="saveServer"> {{comment}}</p>
+</div>
+<p id='comments_saved'>Comments saved.</p>
 <div class="btn btn-default" ng-click="storeComment()" type="button" value="Save">Save</div>
 <p id="hiddenSlug">{{town.slug}}</p>
 

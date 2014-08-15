@@ -575,17 +575,18 @@ townBookControllers.controller('TownDetailCtrl', ['$scope', '$routeParams', '$ht
 
       var body = {
         townSlug: slug.innerHTML,
-        commentText: input.value,
-        query_value: $scope.comment_id
+        commentText: input.innerHTML
+        //query_value: $scope.comment_id
       };
-
+      /*
       if($scope.comment_id){
         body._id = $scope.comment_id;
-      }
+      }*/
 
       $http.post('/addComment', body).success(function(comment) {
         console.log('comment saved:', comment);
-        $scope.comment = comment.commentText;
+        $('#comments_saved').show();
+        //$scope.comment = comment.commentText;
       });
     }
 
@@ -604,7 +605,8 @@ townBookControllers.controller('TownDetailCtrl', ['$scope', '$routeParams', '$ht
     $http.post('/getComment', body).success(function(comment) {
       console.log('comment loaded:', comment);
       $scope.comment = comment.commentText;
-      $scope.comment_id = comment._id;
+      //$scope.comment_id = comment._id;
+      //console.log('comment id:', comment._id);
     });
     //end load comments
 /*

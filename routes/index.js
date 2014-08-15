@@ -156,24 +156,25 @@ exports.addComment = function(Comment) {
     console.log('index.js/addComment');
     var commentBody = {
       townSlug: req.body.townSlug,
-      commentText: req.body.commentText,
+      commentText: req.body.commentText.replace(/^[\r\n]+|[\r\n]+$/g, "").replace('\n',''),
       timestamp: new Date().toISOString()
     };
 
+    /*
     if(req.body._id){ //comment already exists, so overwrite
       //commentBody._id = req.body._id;
       console.log('update: replace.');
-    }
+    }*/
 
-    var queryValue = req.body.query_value;
+    //var queryValue = req.body.query_value;
 
 
     var comment = new Comment(commentBody);
-    Comment.update({_id: queryValue},commentBody, {upsert:true},function(error, comment) {
+    Comment.update({townSlug: req.body.townSlug},commentBody, {upsert:true},function(error, comment) {
       if (error || !comment) {
         res.json({ error : error });
       } else {
-        res.json({ comment : comment });
+        res.json(comment);
       }
     });
     console.log(JSON.stringify(comment));

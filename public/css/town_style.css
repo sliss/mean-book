@@ -42,8 +42,14 @@ table {
 	
 }
 
+
 #hiddenSlug {
 	display:none;
+}
+
+#comments_saved {
+	display:none;
+	color:green;
 }
 
   .body{background-color:#B9CEFA;}
