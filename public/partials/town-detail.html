@@ -1,0 +1,175 @@
+ <div class = "row">
+ <div class="col-sm-12">
+   <span id="index_link"><a href="/#">List of towns</a></span>
+
+
+ </div>
+  </div>
+ <div class = "row">
+ 	<div class="col-sm-6">
+ 	 <h1>{{town.name | uppercase}}</h1>
+ <div id="local_container">
+	 <br/>
+	 <p>County: {{town.county}}</p>
+	 <p>Population: {{town.population | number}}</p>
+	 <p>Local government: {{town.gov_type}}</p>
+	 <p>{{town.leader}}
+	 <p>Federal reps: {{town.federal_reps}}
+	 <p>State senator: {{town.state_senator}}</p>
+	 <p>State representative: {{town.state_rep}}</p>
+	 <p>Established: {{town.established | number}} ({{2014 - town.established}} years old)</p>
+ </div>
+ </div>
+ <div class="col-sm-6">
+ 	<img ng-src="{{town.image_link}}">
+ </div>
+ </div><!-- end row -->
+ <br/><br/><br/><br/><br/>
+ 
+ <h2>2010 Election Results ({{town.p_participation | number:1}}% turnout)</h2>
+ <table class="table table-bordered"> 
+	 <tr>
+	 	
+		 
+		 <th></th>
+		 <th>Baker</th>
+		 <th>Patrick</th>
+		 <th>Cahill</th>
+		 <th>Stein</th>
+		 <th>Total</th>
+		 <th class="results"  rowspan="3" max-width:250px></th>
+	 </tr>
+	 <tr>
+		 <th>Votes</th>
+		 <td>{{town.votes["Baker"] | number}}</td>
+		 <td>{{town.votes["Patrick"] | number}}</td>
+		 <td>{{town.votes["Cahill"] | number}}</td>
+		 <td>{{town.votes["Stein"] | number}}</td> 
+		 <td>{{town.votes["Total"] | number}}</td>
+	 </tr>
+	 <tr>
+		 <th>%</th>
+		 <td>{{town.vote_percentages["% Baker"] | number:1}}%</td>
+		 <td>{{town.vote_percentages["% Patrick"] | number:1}}%</td>
+		 <td>{{town.vote_percentages["% Cahill"] | number:1}}%</td>
+		 <td>{{town.vote_percentages["% Stein"] | number:1}}%</td>
+		 <td>   -   </td>
+
+	 </tr>
+ </table>
+
+ <h2>Party Enrollment Breakdown (2012)</h2>
+ 
+<table class="table table-bordered"> 
+	 <tr>
+		 <!--<th class="enrollment" rowspan="3"></th>-->
+
+		 
+		 <th></th>
+		 <th>Republican</th>
+		 <th>Democrat</th>
+		 <th>Green-Rainbow</th>
+		 <th>Unenrolled</th>
+		 <th>Total</th>
+		 
+	 </tr>
+	 <tr>
+		 <th>Enrolled</th>
+		 <td>{{town.registered_voters["Republican"] | number}}</td>
+		 <td>{{town.registered_voters["Democrat"] | number}}</td>
+		 <td>{{town.registered_voters["Green-Rainbow"] | number}}</td>
+		 <td>{{town.registered_voters["Unenrolled"] | number}}</td>
+		 <td>{{town.registered_voters["Total"] | number}}</td>
+	 </tr>
+	 <tr>
+		 <th>%</th>
+		 
+		 <td>{{town.registered_percentages["% Republican"] | number:1}}%</td>
+		 <td>{{town.registered_percentages["% Democrat"] | number:1}}%</td>
+		 <td>{{town.registered_percentages["% Green-Rainbow"] | number:1}}%</td>
+		 <td>{{town.registered_percentages["% Unenrolled"] | number:1}}%</td>
+		 <td>   -   </td>
+
+
+	 </tr>
+ </table>
+ 
+ 
+ <h2>Unemployment</h2>
+ <p>May. 2014 unemployment rate: {{town.unemployment_percentage | number:1}}%  (MA average is 6.7%)</p>
+ <p>Individuals unemployed: {{town.unemployment_total | number}}</td>
+ 
+ <h2>Local Aid</h2>
+ <table class="table table-bordered"> 
+	 <tr>
+		 <th>FY 08</th>
+		 <th>FY 13</th>
+		 <th>FY 15 (estimate)</th>
+		 <!--
+		 <th>$ Decrease</th>
+		 <th>% Decrease</th>
+		 <th>Decrease per capita</th>
+		-->
+	 </tr>
+	 <tr>
+		 <td>${{town.local_aid_2008 | number:0}}</td>
+		 <td>${{town.local_aid_2013 | number:0}}</td>
+		 <td>${{town.local_aid_2015 | number:0}}</td>
+		 <!--
+		 <td>-${{-1 * town.delta_local_aid | number:0}}</td>
+		 <td>{{town.delta_local_aid_percentage | number:1}}%</td>
+		 <td>-${{-1 * town.delta_local_aid_per_capita | number:2}}</td>
+		-->
+	 </tr>
+ </table>
+
+<h2>Media ({{town.media_market}} media market)</h2>
+ <table class="table table-bordered"> 
+	 <tr>
+		 <th>Newspapers</th>
+	 </tr>	 
+		 <tr ng-repeat="(key,value) in town.papers">
+	 	<td><a href="{{value}}" target="_blank">{{key}}</a></td>
+	 </tr>
+ </table>
+
+ <h2>Campaign (Region {{town.region}})</h2>
+ <table class="table table-bordered"> 
+	 <tr>
+		 <th>Staffer</th>
+		 <td><a href="mailto:{{town.staffer_email}}">{{town.region_staffer}}</a></td>
+		 <td>{{town.staffer_phone}}</td>
+	 </tr>
+	 <tr>
+		 <th>Office</th>
+		 <td>{{town.region_office}}</td>
+		 <td>{{town.region_office_address}}</td>
+	 </tr>
+ </table>
+
+ <h2>State Committee Members</h2>
+ <table class="table table-bordered"> 
+	 <tr>
+		 <th>State Committeeman</th>
+		 <td><a href="mailto:{{town.SCM_email}}">{{town.SCM_name}}</a></td>
+		 <td>{{town.SCM_phone}}</td>
+	 </tr>
+	 <tr>
+		 <th>State Committeewoman</th>
+		<td><a href="mailto:{{town.SCW_email}}">{{town.SCW_name}}</a></td>
+		 <td>{{town.SCW_phone}}</td>
+	 </tr>
+ </table>
+ 
+ <h2>Comments</h2>
+  
+<textarea class="form-control" rows="4" cols="50" name="server" id="saveServer" > 
+{{comment}}
+</textarea>
+<button class="btn btn-default" onclick="storeComment()" type="button" value="Save">Save</button>
+<p id="hiddenSlug">{{town.slug}}</p>
+
+
+
+	
+  
