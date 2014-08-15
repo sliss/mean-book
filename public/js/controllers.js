@@ -573,7 +573,7 @@ townBookControllers.controller('TownDetailCtrl', ['$scope', '$routeParams', '$ht
       console.log('saving comment to DB');
       var input = document.getElementById("saveServer");
       var slug = document.getElementById("hiddenSlug");
-
+      console.log('new comment:', input.innerHTML);
       var body = {
         townSlug: slug.innerHTML,
         commentText: input.innerHTML
@@ -595,21 +595,22 @@ townBookControllers.controller('TownDetailCtrl', ['$scope', '$routeParams', '$ht
     slug = slug.replace(".html","");
     $http.get('townJSON/' + slug + '.json').success(function(data) {
       $scope.town = data;
+      //load comments
+      var body = {
+        query_attribute:'townSlug',
+        query_value:slug
+      };
+      console.log('get comments query body:',body);
+      $http.post('/getComment', body).success(function(comment) {
+        console.log('comment loaded:', comment);
+        $scope.comment = comment.commentText;
+        //$scope.comment_id = comment._id;
+        //console.log('comment id:', comment._id);
+      });
+      //end load comments
     });
 
-    //load comments
-    var body = {
-      query_attribute:'townSlug',
-      query_value:slug
-    };
-    console.log('get comments query body:',body);
-    $http.post('/getComment', body).success(function(comment) {
-      console.log('comment loaded:', comment);
-      $scope.comment = comment.commentText;
-      //$scope.comment_id = comment._id;
-      //console.log('comment id:', comment._id);
-    });
-    //end load comments
+    
 /*
     if(localStorage.getItem(slug))
     	$scope.comment = localStorage.getItem(slug);

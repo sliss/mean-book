@@ -1,4 +1,14 @@
-body {background-color:#D3EDF5 !important;}
+@font-face {
+  font-family: JosefinSansRegular;
+  src: url("/fonts/Josefin-Sans/JosefinSans-Regular.ttf");
+  font-weight: 400;
+}
+
+body {
+	background-color:#D3EDF5 !important;
+	font-family: JosefinSansRegular, "Open Sans", sans-serif;
+}
+
 
 
 .container {

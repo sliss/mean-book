@@ -156,7 +156,7 @@ exports.addComment = function(Comment) {
     console.log('index.js/addComment');
     var commentBody = {
       townSlug: req.body.townSlug,
-      commentText: req.body.commentText.replace(/^[\r\n]+|[\r\n]+$/g, "").replace('\n',''),
+      commentText: req.body.commentText,
       timestamp: new Date().toISOString()
     };
 
