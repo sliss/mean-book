@@ -111,10 +111,11 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
             .domain(data_domain)
             .range(['#1D21F5','#6520A5','#AD1F56','#F51F07']);
            d3.selectAll(".town")
-            .style("fill", function(d) { return color(d.properties.sigma_r_deviance); });
+            .style("fill", function(d) { 
+              return color(d.properties.r_deviance_sigma); });
 
 
-          var legend_width;
+          var legend_width = 100;;
           var box_size = 30;
 
           var legend = d3.select("legendBoxes").append("svg")
