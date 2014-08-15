@@ -1,0 +1,22 @@
+extends layout
+
+block head
+
+  script(type='text/javascript', src='/javascripts/controllers/TodoListController.js')
+
+block content
+  div.container(ng-controller="TodoListController", ng-init="setTowns( #{JSON.stringify(towns)} )")
+    h1 Town List
+    h2 Useless form:
+    form(novalidate, ng-submit="loadData()")
+      textarea(placeholder="Doesn't do bumpkis.")
+      br
+      button.btn.btn-primary(type="submit") Load JSON data
+
+    h2 Data
+    div
+      div.row.todo.done(ng-repeat="town in towns")
+        div.span9
+          p {{town.name}}
+          p {{town.county}}
+       

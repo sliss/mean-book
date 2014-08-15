@@ -1,0 +1,40 @@
+extends layout
+
+block head
+  script(type='text/javascript', src='/javascripts/controllers/TodoListController.js')
+
+block content
+
+    .container-fluid(ng-controller="TodoListController", ng-init="setTowns( #{JSON.stringify(towns)} )")
+          //
+            Sidebar content
+        
+          .bar
+            input(ng-model='query', placeholder='Search MA towns')
+          | Sort by:
+          select.select_menu(ng-model='orderProp')
+            option(value='name') Name
+            option(value='population') Population
+            option(value='r_deviance') Over/underperformance
+            option(value='r_deviance_sigma') Over/underperformance (sigma)
+            option(value='p_participation') % Voter Turnout
+            option(value='percent_registered_unenrolled') % Unenrolled
+            option(value='p_baker') % Baker 2010
+            option(value='p_patrick') % Patrick 2010
+            option(value='percent_registered_republicans') % Registered Republicans
+            option(value='unemployment_percentage') Unemployment
+            option(value='local_aid_2013') Local Aid 2013
+            option(value='delta_local_aid_percentage') Local Aid Decrease '08-'13
+            option(value='comments') Comments
+        .big_list
+          //
+            Body content
+          {{towns}}  
+          div(ng-switch='orderProp')
+            ul(ng-switch-when='name')
+              li(ng-repeat='town in towns')
+                p.dynamic
+                  span.town_name
+                    a(href='#/towns/') {{town.name | uppercase}}
+                  span.stat_display {{town.county}} County
+            

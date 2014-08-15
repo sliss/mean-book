@@ -1,0 +1,58 @@
+body {background-color:#D3EDF5 !important;}
+
+
+.container {
+	padding-bottom:10px;
+	padding-top:10px;
+	background-color:#FFFFFF;
+	border:inset;
+	border-color:#6457F2;
+	border-width:10px;
+}
+
+
+#index_link {
+	display:inline;
+	font-size:22px;
+	margin-left:auto;
+	margin-top:auto;
+}
+
+#index_link a{
+	margin-left:auto;
+	margin-top:auto;
+	text-align:center;
+	font-size:22px;
+}
+
+#results {
+	margin-left:100px;
+}
+
+legendLabels,legendBoxes {
+	display: block;
+	margin:auto;
+	position:relative;
+	left:-150px;
+	top:-150px;
+}
+
+table {
+	background-color:#F7F7F7 !important;	
+	
+}
+
+#hiddenSlug {
+	display:none;
+}
+
+  .body{background-color:#B9CEFA;}
+  .town:hover{ fill: yellow !important; }
+
+  .tract-border {
+    fill: none;
+    stroke: #333;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    stroke-width:.2;
+  }
