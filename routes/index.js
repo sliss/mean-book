@@ -16,35 +16,13 @@ exports.index = function(Todo) {
   };
 };
 
-exports.town_list = function(Town) {
-  return function(req, res) {
-    console.log("route: townlist -> townlist");
-    Town.find({}, function(error, towns) {
-      res.render('town_list', {
-        title: 'It is the town list, actually!',
-        towns : towns
-      });
-    });
-  };
-};
-/*
-exports.town_list = function(Todo) {
-  return function(req, res) {
-    Todo.find({}, function(error, todos) {
-      res.render('town_list', {
-        title: 'It is the town list, actually!',
-        todos : todos
-      });
-    });
-  };
-};
-*/
-// get data from mongo
+// get data from mongo.  called from controller.
 exports.get = function(Town) {
   return function(req, res) {
     console.log("route index: finding the towns in mongo");
     Town.find({}, function(error, towns) {
-      //console.log("get res:",res.json({ towns : towns }));
+      console.log("get towns resp (#):",towns.length);
+      //res.send, but explicitely for JSON
       res.json({ towns : towns });
     });
   }

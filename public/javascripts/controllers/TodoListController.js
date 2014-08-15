@@ -17,11 +17,30 @@ function TodoListController($scope, $http) {
   $scope.doneFilter = { done : true };
   $scope.notDoneFilter = { done : false };
 */
+
+
+  /*************************
+  Controls Town List view
+  *************************/
+  $scope.initTownList = function() {
+    console.log('TodoListController setTowns');
+    //via JSON file
+    $http.get('towns/towns.json').success(function(data) {
+      $scope.towns = data;
+      console.log('towns:', data);
+    });
+  
+  };
+  //************************
+
   $scope.setTodos = function(todos) {
     $scope.todos = todos;
   };
 
   $scope.setTowns = function(towns) {
+    console.log('TodoListController setTowns');
+    //via mongo
+    console.log('towns:', towns);
     $scope.towns = towns;
   };
 
@@ -32,16 +51,6 @@ function TodoListController($scope, $http) {
       }
     });
   };
-
-  /*
-  $scope.update = function(todo) {
-    $http.put('/todo/' + todo._id + '.json', todo).success(function(data) {
-      if (!data.todo) {
-        alert(JSON.stringify(data));
-      }
-    });
-  };
-  */
 
   $scope.updateList = function() {
     $http.get('/towns.json').success(function(data) {
@@ -67,9 +76,10 @@ function TodoListController($scope, $http) {
     });
   };
 
-
 // load data from JSONs to mongo
   $scope.loadData = function() {
+    console.log("controller: loadData");
+
     town_filenames = ["abington.json","acton.json","adams.json"];
 
     for(var i = 0; i < town_filenames.length; i++) {
@@ -90,15 +100,5 @@ function TodoListController($scope, $http) {
         });
       });
   }
-    /*
-    for(var i = 0; i < $scope.data.length; i++){
-      console.log('loop#' + i);
-      $http.post('/load_data', $scope.data[i]).success(function(data) {
-        if (!data.todo) {
-          alert(JSON.stringify(data));
-        }
-      });
-
-    };*/
 }
 }  

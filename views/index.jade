@@ -3,6 +3,10 @@ extends layout
 block head
 
   script(type='text/javascript', src='/javascripts/controllers/TodoListController.js')
+  script(type='text/javascript', src='/javascripts/controllers.js')
+  script(type='text/javascript', src='/javascripts/filters.js')
+  script(type='text/javascript', src='/javascripts/directives.js')
+
 
 block content
   div.container(ng-controller="TodoListController", ng-init="setTowns( #{JSON.stringify(towns)} )")

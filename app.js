@@ -37,9 +37,11 @@ if ('development' == app.get('env')) {
 }
 
 
-app.get('/town_list', routes.town_list(Town));
+app.get('/town_list', town_list.town_list(Town));
 
 app.get('/users', user.list);
+
+//load towns from DB
 app.get('/towns.json', routes.get(Town));
 
 
