@@ -555,7 +555,10 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
 townBookControllers.controller('TownDetailCtrl', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
     console.log('detail control');
-    
+    $(function() {
+       $('body').scrollTop(0);
+    });
+
     $scope.storeComment = {};
     $scope.storeComment = function() {
       console.log('saving comment to DB');
@@ -655,12 +658,21 @@ townBookControllers.controller('TownDetailCtrl', ['$scope', '$routeParams', '$ht
       /**************
         History Graph
       ************/
+      var nums = {
+        a:[1,2,3,4,5,6,7,8,9,10],
+        b:[10,9,8,7,6,5,4,3,2,1],
+        c:[1,2,3,4,5,6,7,8,9,10],
+      };
+
+      var nums_keys = Object.keys(nums);
+
       nv.addGraph(function() {
           var chart = nv.models.multiBarChart()
             .transitionDuration(350)
             .reduceXTicks(true)   //If 'false', every single x-axis tick label will be rendered.
             .rotateLabels(0)      //Angle to rotate x-axis labels.
             .showControls(true)   //Allow user to switch between 'Grouped' and 'Stacked' mode.
+            .stacked(true)
             .groupSpacing(0.1)    //Distance between each group of bars.
             .color(['blue', 'green', 'yellow'])
           ;
@@ -682,12 +694,14 @@ townBookControllers.controller('TownDetailCtrl', ['$scope', '$routeParams', '$ht
 
       //Generate some nice data.
       function exampleData() {
-        return stream_layers(3,10+Math.random()*100,.1).map(function(data, i) {
+        var SL = stream_layers(nums_keys.length,nums_keys[0].length,.1, nums).map(function(data, i) {
           return {
-            key: 'Stream #' + i,
+            key: nums_keys[i],
             values: data
           };
         });
+        console.log('SLs',SL);
+        return SL;
       }
 
 /*
