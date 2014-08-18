@@ -555,7 +555,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
 townBookControllers.controller('TownDetailCtrl', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
     console.log('detail control');
-
+    
     $scope.storeComment = {};
     $scope.storeComment = function() {
       console.log('saving comment to DB');
@@ -600,17 +600,18 @@ townBookControllers.controller('TownDetailCtrl', ['$scope', '$routeParams', '$ht
 
     
 /*
-    if(localStorage.getItem(slug))
-    	$scope.comment = localStorage.getItem(slug);
-    else
-    	$scope.comment = '';
+    *****
+    Pie chart results 2010
+    ******
 */
     var width = 200,
         height = 200,
         radius = Math.min(width, height) / 2;
 
+      var red = '#cc334d', blue = '#338ccc', purple = '#9467BD';
+
       var color = d3.scale.ordinal()
-          .range(["#D61F29", "#3B20D3", "#79208F"]);
+          .range([red, blue, purple]);
 
       var arc = d3.svg.arc()
           .outerRadius(radius - 10)
@@ -650,7 +651,48 @@ townBookControllers.controller('TownDetailCtrl', ['$scope', '$routeParams', '$ht
       });
 
       //*****************************
+
+      /**************
+        History Graph
+      ************/
+      nv.addGraph(function() {
+          var chart = nv.models.multiBarChart()
+            .transitionDuration(350)
+            .reduceXTicks(true)   //If 'false', every single x-axis tick label will be rendered.
+            .rotateLabels(0)      //Angle to rotate x-axis labels.
+            .showControls(true)   //Allow user to switch between 'Grouped' and 'Stacked' mode.
+            .groupSpacing(0.1)    //Distance between each group of bars.
+            .color(['blue', 'green', 'yellow'])
+          ;
+
+          chart.xAxis
+              .tickFormat(d3.format(',f'));
+
+          chart.yAxis
+              .tickFormat(d3.format(',.1f'));
+
+          d3.select('#results_history svg')
+              .datum(exampleData())
+              .call(chart);
+
+          nv.utils.windowResize(chart.update);
+
+          return chart;
+      });
+
+      //Generate some nice data.
+      function exampleData() {
+        return stream_layers(3,10+Math.random()*100,.1).map(function(data, i) {
+          return {
+            key: 'Stream #' + i,
+            values: data
+          };
+        });
+      }
+
 /*
+
+
       var svg_enrollment = d3.select(".enrollment").append("svg")
           .attr("width", width)
           .attr("height", height)
