@@ -674,7 +674,6 @@ townBookControllers.controller('TownDetailCtrl', ['$scope', '$routeParams', '$ht
             .showControls(true)   //Allow user to switch between 'Grouped' and 'Stacked' mode.
             .stacked(true)
             .groupSpacing(0.1)    //Distance between each group of bars.
-            .color(['blue', 'green', 'yellow'])
           ;
 
           chart.xAxis
