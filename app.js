@@ -35,28 +35,10 @@ var Comment = db.model('comments', CommentSchema);
 
 
 // for authentication
-/*
-function sha512(input) {
-    var hash      = CryptoJS.enc.Hex.stringify(SHA1(input));
-    return hash;
-}
-
-function generateToken(){
-	length    = 256;
-	var token   = undefined;
-    try {
-        token = crypto.randomBytes(length).toString('hex');
-    } catch (ex) {
-      console.log("Error generating token: " + ex);
-    } finally {
-      return token;
-    }
-}*/
-
 passport.use(new LocalStrategy(function(username, password, done){
 	var self = this;
 	console.log('passport authenticating username: ',username, 'password:', password);
-	console.log('sha512(token+state3144)', CryptoJS.enc.Hex.stringify(SHA512('bb3172da0f301b5df755d53eece48e2d9d386a83f7e4bac8f25289c37f948fd5ed18cf40b4ce4b364e3d4757bb9cef433351c170cdb3756936a951a4e413b13e1cedf2259ef0e95db31d849fbc092b0108b2b30b93df50caf080814cc0194a7bc17ae109624e2428085e0626fa93b0f3c201916271effe62aea22d0338815900d3c5bf9911970a3b39a4336d1aaf39f4ea0b3af6a861a68644dd38ed0db0011a2166fcf8d77ca0cda9e1022fcad3c47a93b511e2c74e79ca6bdf0bea636bdb92ba29c0c262c60e361db2ca7c8cdb67cbf44e36d659c7be759e50a6509c70a68caa972ff0c9ea095115ecf4ce12231375c390fd539244f95158de0e152d8714a6state3144')));
+	//console.log('sha512(token+state3144)', CryptoJS.enc.Hex.stringify(SHA512('bb3172da0f301b5df755d53eece48e2d9d386a83f7e4bac8f25289c37f948fd5ed18cf40b4ce4b364e3d4757bb9cef433351c170cdb3756936a951a4e413b13e1cedf2259ef0e95db31d849fbc092b0108b2b30b93df50caf080814cc0194a7bc17ae109624e2428085e0626fa93b0f3c201916271effe62aea22d0338815900d3c5bf9911970a3b39a4336d1aaf39f4ea0b3af6a861a68644dd38ed0db0011a2166fcf8d77ca0cda9e1022fcad3c47a93b511e2c74e79ca6bdf0bea636bdb92ba29c0c262c60e361db2ca7c8cdb67cbf44e36d659c7be759e50a6509c70a68caa972ff0c9ea095115ecf4ce12231375c390fd539244f95158de0e152d8714a6state3144')));
 	//console.log('random token', crypto.randomBytes(256).toString('hex'));
 
 
@@ -104,26 +86,6 @@ passport.deserializeUser(function(id, done) {
     });
 });
 
-function authenticatedOrNot(req, res, next){
-    if(req.isAuthenticated()){
-        next();
-    }else{
-        res.redirect("/welcome.html");
-    }
-}
-
-function userExist(req, res, next) {
-    Users.count({
-        username: req.body.username
-    }, function (err, count) {
-        if (count === 0) {
-            next();
-        } else {
-            // req.session.error = "User Exist"
-            res.redirect("/signup");
-        }
-    });
-}
 
 // all environments
 app.set('port', process.env.PORT || 80);
@@ -146,7 +108,6 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-
 //login & logout
 app.post('/login',
   passport.authenticate('local', { successRedirect: '/',
@@ -159,10 +120,6 @@ app.get('/logout', function(req, res){
 		res.redirect('/welcome.html');
 });
 
-app.get('/town_list', town_list.town_list(Town));
-
-app.get('/users', user.list);
-
 //load towns from DB
 app.get('/towns.json', routes.get(Town));
 
@@ -170,7 +127,6 @@ app.get('/towns.json', routes.get(Town));
 //app.put('/todo/:id.json', routes.update(Todo));
 app.put('/town/:id.json', routes.update(Town));
 
-//app.post('/todo.json', routes.addTodo(Todo));
 app.post('/addComment', routes.addComment(Comment));
 app.post('/load_data', routes.loadData(Town));
 app.get('/', routes.index(Todo));

@@ -3,16 +3,44 @@
  * GET home page.
  */
 var request     = require('request');
+var passport = require('passport'),
+  LocalStrategy = require('passport-local').Strategy;
+/*
+function loginCheck(req, res, next){
+    if(req.isAuthenticated()){
+        next();
+    }else{
+        res.redirect("/welcome.html");
+    }
+}
+
+function userExist(req, res, next) {
+    Users.count({
+        username: req.body.username
+    }, function (err, count) {
+        if (count === 0) {
+            next();
+        } else {
+            // req.session.error = "User Exist"
+            res.redirect("/signup");
+        }
+    });
+}*/
 
 exports.index = function(Todo) {
   return function(req, res) {
     console.log("routes -> index.js -> index");
-    Todo.find({}, function(error, todos) {
-      res.render('index', {
-        title: 'Express',
-        todos : todos
+    if(req.isAuthenticated()){
+      Todo.find({}, function(error, todos) {
+        res.render('index', {
+          title: 'Express',
+          todos : todos
+        });
       });
-    });
+    }
+    else{
+      res.redirect('/welcome.html');
+    }
   };
 };
 
@@ -20,23 +48,19 @@ exports.index = function(Todo) {
 
 exports.get = function(Town) {
   return function(req, res) {
-    console.log("route index: finding the towns in mongo");
-    Town.find({}, function(error, towns) {
-      console.log("get towns resp (#):",towns.length);
-      //res.send, but explicitely for JSON
-      res.json({ towns : towns });
-    });
+    if(req.isAuthenticated()){
+      console.log("route index: finding the towns in mongo");
+      Town.find({}, function(error, towns) {
+        console.log("get towns resp (#):",towns.length);
+        //res.send, but explicitely for JSON
+        res.json({ towns : towns });
+      });
+    }
+    else {
+      res.redirect('/welcome.html');
+    }
   }
 };
-
-/*exports.get = function(Todo) {
-  return function(req, res) {
-    console.log("finding the todos in mongo");
-    Todo.find({}, function(error, todos) {
-      res.json({ todos : todos });
-    });
-  }
-};*/
 
 exports.update = function(Town) {
   return function(req, res) {
@@ -57,84 +81,6 @@ exports.update = function(Town) {
   }
 };
 
-/*
-exports.update = function(Todo) {
-  return function(req, res) {
-    Todo.findOne({ _id : req.params.id }, function(error, todo) {
-      if (error || !todo) {
-        res.json({ error : error });
-      } else {
-        todo.done = req.body.done;
-        todo.save(function(error, todo) { //collection saves - writes to database
-          if (error || !todo) {
-            res.json({ error : error });
-          } else {
-            res.json({ todo : todo });
-          }
-        });
-      }
-    });
-  }
-};
-*/
-
-exports.addTodo = function(Todo) {
-  return function(req, res) {
-    var todo = new Todo(req.body); //req.body is the JSON object, e.g. req.body.description give the description
-    //console.log("description:" + req.body.description);
-    //console.log(Todo.find({description: "11"}).limit(1));
-    /*if(Todo.findOne({description: "11"})) {
-      console.log("found dupe!!");
-    } */ 
-    Todo.find({description: {$in: ["11","12"]}},function(error,docs){
-      if (error || !docs) {
-        console.log("error :(");
-        console.log("errouneous doc: " + doc);
-        res.json({ error : error });
-      } else {
-        docs.forEach(function(d){
-          console.log(d);
-        });
-        
-        res.json({ todo : todo });
-      }
-    }); // {description: {$in: "11"}}
-
-    /**** this works ****
-    var myDoc;
-    Todo.findOne({description: {$in: ["11","12"]}},function(error,doc){
-      if (error || !doc) {
-        console.log("error :(");
-        console.log("errouneous doc: " + doc);
-        res.json({ error : error });
-      } else {
-        console.log("myDoc: " + doc);
-        myDoc = doc;
-        console.log("near end addTodo: " + myDoc);
-        res.json({ todo : doc });
-      }
-    }); 
-    */
-    
-    /*Todo.update({'description': '11'}, todo, {upsert : true}, function(error, todo) {
-      console.log("upserting");
-      if (error || !todo) {
-        res.json({ error : error });
-      } else {
-        res.json({ todo : todo });
-      }
-    });*/
-    todo.save(function(error, todo) {
-      if (error || !todo) {
-        res.json({ error : error });
-      } else {
-        res.json({ todo : todo });
-      }
-    });
-    //console.log(JSON.stringify(todo));
-  };
-};
-
 exports.addTown = function(Town) {
   return function(req, res) {
     var town = new Town(req.body); //req.body is the JSON object, e.g. req.body.description give the description
@@ -150,48 +96,49 @@ exports.addTown = function(Town) {
   };
 };
 
-
 exports.addComment = function(Comment) {
   return function(req, res) {
-    console.log('index.js/addComment');
-    var commentBody = {
-      townSlug: req.body.townSlug,
-      commentText: req.body.commentText,
-      timestamp: new Date().toISOString()
-    };
-
-    /*
-    if(req.body._id){ //comment already exists, so overwrite
-      //commentBody._id = req.body._id;
-      console.log('update: replace.');
-    }*/
-
-    //var queryValue = req.body.query_value;
-
-
-    var comment = new Comment(commentBody);
-    Comment.update({townSlug: req.body.townSlug},commentBody, {upsert:true},function(error, comment) {
-      if (error || !comment) {
-        res.json({ error : error });
-      } else {
-        res.json(comment);
+    if(req.isAuthenticated()){
+      console.log('index.js/addComment');
+        var commentBody = {
+          townSlug: req.body.townSlug,
+          commentText: req.body.commentText,
+          timestamp: new Date().toISOString()
+        };
+    
+        var comment = new Comment(commentBody);
+        Comment.update({townSlug: req.body.townSlug},commentBody, {upsert:true},function(error, comment) {
+          if (error || !comment) {
+            res.json({ error : error });
+          } else {
+            res.json(comment);
+          }
+        });
+        console.log(JSON.stringify(comment));
       }
-    });
-    console.log(JSON.stringify(comment));
+      else {
+        res.redirect('/welcome.html');
+      }
+
   };
 };
 
 exports.getComment = function(Model) {
   return function(req, res) {
-    console.log("route index: finding the docs in mongo");
-    var queryAttribute = req.body.query_attribute;
-    var queryValue = req.body.query_value;
-
-    Model.findOne({townSlug: queryValue}, function(error, docs) {
-      console.log("get docs resp:",docs);
-      //res.send, but explicitely for JSON
-      res.json(docs);
-    });
+    if(req.isAuthenticated()){
+      console.log("route index: finding the docs in mongo");
+        var queryAttribute = req.body.query_attribute;
+        var queryValue = req.body.query_value;
+    
+        Model.findOne({townSlug: queryValue}, function(error, docs) {
+          console.log("get docs resp:",docs);
+          //res.send, but explicitely for JSON
+          res.json(docs);
+        });
+    }
+    else {
+      res.redirect('/welcome.html');
+    }
   }
 };
 
@@ -206,28 +153,25 @@ exports.loadData = function(Town) {
     town_filenames = ["abington.json","acton.json","adams.json"];
 
     for(t in town_filenames) {
-
-
-
-    var url = './towns/' + t;
-    request.get({
-        url:url
-      }, function(error, response, body){
-        if (error) { 
-          console.log(error); cb(null);
-        }
-        else {
-          var town = JSON.parse(body);
-          console.log("the body", body);
-           todo.save(function(error, town) {
-            if (error || !town) {
-              res.json({ error : error });
-            } else {
-              res.json({ town : town });
-            }
-          });
-        }
-      });
+      var url = './towns/' + t;
+      request.get({
+          url:url
+        }, function(error, response, body){
+          if (error) { 
+            console.log(error); cb(null);
+          }
+          else {
+            var town = JSON.parse(body);
+            console.log("the body", body);
+             todo.save(function(error, town) {
+              if (error || !town) {
+                res.json({ error : error });
+              } else {
+                res.json({ town : town });
+              }
+            });
+          }
+        });
 
     }
   };
