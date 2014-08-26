@@ -1,0 +1,55 @@
+*{
+	font-family: 'Montserrat', sans-serif;
+}
+
+#header{
+	padding:10px;
+	padding-bottom:20px;
+	padding-left:20px;
+	height: 10%;
+	background: -webkit-linear-gradient(left, red , white); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(right, red, white); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(right, red, white); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(to right, red , white); /* Standard syntax */
+}
+
+body{
+	height:800px;
+	background: -webkit-linear-gradient(left,  white, blue); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(right, white, blue); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(right, white, blue); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(to right,  white, blue); /* Standard syntax */
+}
+
+#form_container {
+	padding:20px;
+	height: 40%;
+	-webkit-filter: blur(5px);
+	background-image: url('cols.jpg');
+	background-size: 100% auto;
+    background-repeat: no-repeat;
+	font-family: 'Montserrat', sans-serif !important;
+}
+
+#login_form{
+	position:relative;
+	top:-30%;
+	background-color:#ccc;
+	padding:30px;
+	width:40%;
+	opacity: .7;
+	text-align: left;
+	margin-right: 0px;
+	margin-left: auto;
+	-webkit-filter: none !important;
+}
+
+footer{
+	position:absolute;
+	bottom:0px;
+	width:100%;
+	background: -webkit-linear-gradient(left, red , white); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(right, red, white); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(right, red, white); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(to right, red , white); /* Standard syntax */
+}

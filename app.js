@@ -117,7 +117,7 @@ app.post('/login',
 
 app.get('/logout', function(req, res){
 		req.logout();
-		res.redirect('/welcome.html');
+		res.render('welcome');
 });
 
 //load towns from DB

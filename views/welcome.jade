@@ -1,0 +1,26 @@
+doctype html
+html(lang="en", xmlns:xlink="http://www.w3.org/1999/xlink")
+    head
+        meta(charset="utf-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+        title State Insight - Welcome
+        link(rel="stylesheet", href="css/welcome.css")
+        link(rel="stylesheet", href="css/bootstrap.css")
+        link(href="http://fonts.googleapis.com/css?family=Montserrat", rel="stylesheet", type="text/css")
+    div#header.row
+        h1 State Insight
+    body
+        div#form_container.row
+        div#login_form
+            form(action="/login", method="post")
+              div
+                label Username:
+                input(type="text", name="username")
+              div
+                label Password:
+                input(type="password", name="password")
+              div
+                input(type="submit", value="Log In")
+    footer
+        | © 2014
+        a(href="http://stevenliss.com/") Steven B. Liss

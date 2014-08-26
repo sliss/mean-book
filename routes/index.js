@@ -33,13 +33,13 @@ exports.index = function(Todo) {
     if(req.isAuthenticated()){
       Todo.find({}, function(error, todos) {
         res.render('index', {
-          title: 'Express',
+          title: 'State Insight',
           todos : todos
         });
       });
     }
     else{
-      res.redirect('/welcome.html');
+      res.render('welcome');
     }
   };
 };
@@ -57,7 +57,7 @@ exports.get = function(Town) {
       });
     }
     else {
-      res.redirect('/welcome.html');
+      res.render('welcome');
     }
   }
 };
@@ -117,7 +117,7 @@ exports.addComment = function(Comment) {
         console.log(JSON.stringify(comment));
       }
       else {
-        res.redirect('/welcome.html');
+        res.render('welcome');
       }
 
   };
@@ -137,7 +137,7 @@ exports.getComment = function(Model) {
         });
     }
     else {
-      res.redirect('/welcome.html');
+      res.render('welcome');
     }
   }
 };
