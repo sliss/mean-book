@@ -1,5 +1,11 @@
 var Mongoose = require('mongoose');
 
+exports.UserSchema = new Mongoose.Schema({
+  username: String,
+  salt: String,
+  hash: String
+});
+
 exports.TodoSchema = new Mongoose.Schema({
   description : { type : String, required : true },
   due : { type : Date, required : true },
