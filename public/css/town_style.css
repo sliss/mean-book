@@ -1,12 +1,12 @@
 body {
-	background-color:#D3EDF5 !important;
-	font-family: 'Montserrat', sans-serif !important;}
+	background-color:#000D1A !important;
+	font-family: 'Lato', sans-serif !important;}
 
 .container {
 	padding-bottom:10px;
 	padding-top:10px;
-	background-color:#FFFFFF;
-	border:inset;
+	background-color:#fff;
+	border:none;
 	border-color:#6457F2;
 	border-width:10px;
 }

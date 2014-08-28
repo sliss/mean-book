@@ -6,11 +6,12 @@ html(lang="en", xmlns:xlink="http://www.w3.org/1999/xlink")
         title State Insight - Welcome
         link(rel="stylesheet", href="css/welcome.css")
         link(rel="stylesheet", href="css/bootstrap.css")
-        link(href="http://fonts.googleapis.com/css?family=Montserrat", rel="stylesheet", type="text/css")
+        link(href="http://fonts.googleapis.com/css?family=Lato:300,100", rel="stylesheet", type="text/css")
     div#header.row
-        h1 State Insight
-    body
-        div#form_container.row
+        div#state_insight
+            h1.larger-text State Insight
+   
+    div#form_container.row
         div#login_form
             form(action="/login", method="post")
               div
@@ -21,6 +22,13 @@ html(lang="en", xmlns:xlink="http://www.w3.org/1999/xlink")
                 input(type="password", name="password")
               div
                 input(type="submit", value="Log In")
+    div#copy.row
+        div.col-sm-4
+            div.copy_content Lorem ipsum dolor   Lorem ipsum dolor   Lorem ipsum dolor   Lorem ipsum dolor   
+        div.col-sm-4
+            div.copy_content Lorem ipsum dolor   Lorem ipsum dolor   Lorem ipsum dolor   Lorem ipsum dolor   
+        div.col-sm-4
+            div.copy_content Lorem ipsum dolor    Lorem ipsum dolor   Lorem ipsum dolor   Lorem ipsum dolor    
     footer
-        | © 2014
-        a(href="http://stevenliss.com/") Steven B. Liss
+      | © 2014&nbsp&nbsp
+      a(href='http://stevenliss.com/') Steven B. Liss        
