@@ -2,13 +2,21 @@ body {
 	background-color:#000D1A !important;
 	font-family: 'Lato', sans-serif !important;}
 
+h1{
+	font-size: 60px !important;
+}
+
 .container {
 	padding-bottom:10px;
 	padding-top:10px;
-	background-color:#fff;
+	background-color:#000D1A;
 	border:none;
 	border-color:#6457F2;
 	border-width:10px;
+}
+
+#detail_container{
+	background-color: white;
 }
 
 #index_link {
@@ -23,6 +31,7 @@ body {
 	margin-top:auto;
 	text-align:center;
 	font-size:22px;
+	color:#000 !important;
 }
 
 #results {

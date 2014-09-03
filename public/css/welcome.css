@@ -1,3 +1,31 @@
+.parallax {
+  perspective: 1px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.parallax__layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.parallax__layer--base {
+  transform: translateZ(0);
+}
+.parallax__layer--back {
+  transform: translateZ(-1px);
+
+}
+
+.parallax__group {
+  position: relative;
+  height: 100vh;
+  transform-style: preserve-3d;
+}
+
+
 *{
 	font-family: 'Lato', sans-serif;
 	font-weight: 300;
@@ -5,29 +33,37 @@
 
 #header{
 	color: white;
-	background-color:#000D1A;
 	height:20%;
+
 }
 
 h1{
 	font-size: 74px !important;
 	padding-bottom:20px !important;
 	text-align: center;
+	color:white !important;
+}
+
+h3{
+	color:white !important;
 }
 
 img{
-	width:280px;
-	height:auto;
-	text-align: center;
+	height:400px;
 }
 
-html{
-	background-color: #000D1A;
+html,body{
 	color:white;
-	background: -webkit-linear-gradient(top,  #000D1A, #520000); /* For Safari 5.1 to 6.0 */
-	background: -o-linear-gradient(top, #000D1A, #520000); /* For Opera 11.1 to 12.0 */
-	background: -moz-linear-gradient(top, #000D1A, #520000); /* For Firefox 3.6 to 15 */
-	background: linear-gradient(to bottom,  #000D1A, #520000); /* Standard syntax */
+	background-image: url("purphex.png");
+	background-size: 56px 32px;
+	background-size: 112px 65px;
+
+/*
+	background: -webkit-linear-gradient(top,  #000D1A, #520000); /
+	background: -o-linear-gradient(top, #000D1A, #520000); 
+	background: -moz-linear-gradient(top, #000D1A, #520000);
+	background: linear-gradient(to bottom,  #000D1A, #520000); 
+	*/
 }
 
 label{
@@ -44,7 +80,7 @@ label{
 
 #form_container {
 	background-color: #000D1A;
-	opacity:.95;
+	opacity:.5;
 	height:20%;
 	/*-webkit-filter: blur(5px);
 	background-image: url('statemap.png');
@@ -79,27 +115,25 @@ input[type=submit]:hover{
 
 #copy{
 	height:800px;
+	padding:20px;
+	text-align: center;
 	/*position:relative;
 	top:-30%;*/
 	color:white;
-	background: -webkit-linear-gradient(top,  #000D1A, #15001A); /* For Safari 5.1 to 6.0 */
-	background: -o-linear-gradient(top, #000D1A, #15001A); /* For Opera 11.1 to 12.0 */
-	background: -moz-linear-gradient(top, #000D1A, #15001A); /* For Firefox 3.6 to 15 */
-	background: linear-gradient(to bottom,  #000D1A, #15001A); /* Standard syntax */
+	/*
+	background: -webkit-linear-gradient(top,  #000D1A, #15001A); 
+	background: -o-linear-gradient(top, #000D1A, #15001A); 
+	background: -moz-linear-gradient(top, #000D1A, #15001A); */
 }
 
 .copy_content{
-	padding:5px;
+	height:100vh;
 }
 
 footer{
 	position:fixed;
+	padding:5px;
 	bottom: 0;
-	background: -webkit-linear-gradient(bottom,  #000D1A, #000D1A); /* For Safari 5.1 to 6.0 */
-	background: -o-linear-gradient(bottom, #000D1A, #000D1A); /* For Opera 11.1 to 12.0 */
-	background: -moz-linear-gradient(bottom, #000D1A, #000D1A); /* For Firefox 3.6 to 15 */
-	background: linear-gradient(to top,  #000D1A, #000D1A); /* Standard syntax */
 	color:white;
 	text-align: right;
-	width:100%;
 }

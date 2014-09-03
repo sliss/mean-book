@@ -7,37 +7,40 @@ html(lang="en", xmlns:xlink="http://www.w3.org/1999/xlink")
         link(rel="stylesheet", href="css/welcome.css")
         link(rel="stylesheet", href="css/bootstrap.css")
         link(href="http://fonts.googleapis.com/css?family=Lato:300,100", rel="stylesheet", type="text/css")
-    div#header.row
-        div#state_insight
-            h1.larger-text State Insight
-                h3 Hundreds of towns. Millions of voters. One tool.
-   
-    div#form_container.row
-        div#login_form
-            form(action="/login", method="post")
-              div
-                label Username:
-                input(type="text", name="username")
-              div
-                label Password:
-                input(type="password", name="password")
-              div
-                input(type="submit", value="Log In")
-    div#copy.row
-        div.col-sm-4
-            div.copy_content 
-                h4 Visualize reams of demographic data at a glance.
-                img(src='/bilevel.png')  
-        div.col-sm-4
-            div.copy_content 
-                h4 Locate statistically behavioral trends.
-                img(src='/statemap.png')  
+    div.parallax
+        div.parallax__group#group1
+            div#copy_back.parallax__layer--back
+            div#copy_base.parallax__layer--base
+                div#state_insight
+                    h1.larger-text State Insight
+                    h3 Hundreds of towns. Millions of voters. One tool.
+           
+                div#form_container
+                    div#login_form
+                        form(action="/login", method="post")
+                          div
+                            label Username:
+                            input(type="text", name="username")
+                          div
+                            label Password:
+                            input(type="password", name="password")
+                          div
+                            input(type="submit", value="Log In")
 
-        div.col-sm-4
-            div.copy_content 
-                h4 Understand voter associations.
-            img(src='/clusters.png')  
+        div#copy.parallax__group
+            div#copy_back.parallax__layer--back
+            div#copy_base.parallax__layer--base
+                div.copy_content
+                    h3 Visualize demographic data at a glance.
+                    img(src='/bilevel.png') 
+                div.copy_content
+                    h3 Locate important behavioral trends.
+                    img(src='/statemap.png')  
+
+                div.copy_content
+                    h3 Understand voter associations.
+                    img(src='/clusters.png')  
 
     footer
       | © 2014&nbsp&nbsp
-      a(href='http://stevenliss.com/') Steven B. Liss        
+      a(href='http://stevenliss.com/') Steven B. Liss

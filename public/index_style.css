@@ -22,7 +22,7 @@
 	font-size:26px;
 	margin-top: 10px;
 	display:block;
-	text-align:center;
+	text-align:center; 
 	margin-bottom:15px;
 }
 
@@ -34,6 +34,7 @@
 
 footer{
 	text-align: right;
+	color:#FFF;
 }
 
 .logo {
@@ -44,6 +45,7 @@ footer{
 	text-align:right;
 	float:right;
 	margin-right:10%;
+	color:#eee !important;
 }
 
 #legend{
@@ -55,9 +57,10 @@ body{
 }
 
 a, a:visited {
-	outline:none;
-	color:#389dc1;
+	text-decoration: underline;
+	color:#FFF !important;
 }
+/*#389dc1*/
 
 a:hover{
 	text-decoration:none;
@@ -72,13 +75,13 @@ section, footer, header, aside, nav{
 --------------------------*/
 
 .bar{
-	background-color:#5c9bb7;
-
+	background-color:#0c1824;
+/*
 	background-image:-webkit-linear-gradient(top, #5c9bb7, #5392ad);
 	background-image:-moz-linear-gradient(top, #5c9bb7, #5392ad);
 	background-image:linear-gradient(top, #5c9bb7, #5392ad);
-
-	box-shadow: 0 1px 1px #ccc;
+*/
+	box-shadow: 0 2px 2px #D1A002;
 	border-radius: 2px;
 	width: 66%;
 	padding: 14px;
@@ -90,6 +93,8 @@ section, footer, header, aside, nav{
 .span2 {
 	text-align:center;
 	 margin: -5px auto 15px;
+	background-color: #000D1A;
+	color:#FFF;
 }
 
 .select_menu {
@@ -102,6 +107,7 @@ section, footer, header, aside, nav{
    border: 1px solid #ccc;
    text-align:center;
    height: 34px;
+   color:#000;
 
 }
 
@@ -115,11 +121,11 @@ section, footer, header, aside, nav{
 	padding: 11px 0;
 
 	border-radius: 2px;
-	box-shadow: 0 2px 8px #c4c4c4 inset;
+	/*box-shadow: 0 2px 8px #c4c4c4 inset;*/
 	text-align: left;
 	font-size: 14px;
 	font-family: inherit;
-	color: #738289;
+	color: #738289!important;
 	font-weight: bold;
 	outline: none;
 	text-indent: 40px;
@@ -138,7 +144,7 @@ section, footer, header, aside, nav{
 	max-width:600px;
 	margin: 0 auto;
 	text-align: left;
-	border-color:#D3EDF5;
+	border-color:#FFF;
 	border-style:solid;
 	border-width:10px;
 	font-size:18px;
@@ -156,10 +162,11 @@ section, footer, header, aside, nav{
 	float:left;
 	border:none;
 }
-
+/*#6e7a7f;*/
 .big_list ul li p{
 	margin-left: 16%px;
 	font-weight: bold;
 	padding-top: 12px;
-	color:#6e7a7f;
+	color:#FFF
+
 }
