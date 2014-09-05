@@ -18,12 +18,16 @@ html(lang="en", xmlns:xlink="http://www.w3.org/1999/xlink")
                 div#form_container
                     div#login_form
                         form(action="/login", method="post")
-                          div
-                            label Username:
-                            input(type="text", name="username")
-                          div
-                            label Password:
-                            input(type="password", name="password")
+                          div.row
+                        
+                            input(type="text", name="username" placeholder="Email")
+                        
+
+                          div.row
+                        
+                            input(type="password", name="password" placeholder="Password")
+                        
+
                           div
                             input(type="submit", value="Log In")
 

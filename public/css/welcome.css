@@ -3,6 +3,7 @@
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .parallax__layer {
   position: absolute;
@@ -38,14 +39,17 @@
 }
 
 h1{
-	font-size: 74px !important;
+	font-size: 92px !important;
 	padding-bottom:20px !important;
 	text-align: center;
 	color:white !important;
+	font-variant: small-caps;
+
 }
 
 h3{
 	color:white !important;
+	font-variant: small-caps;
 }
 
 img{
@@ -67,8 +71,9 @@ html,body{
 }
 
 label{
+	font-variant: small-caps;
+	text-align: right;
 	color:white;
-	font-family: courier;
 	font-weight: 100;
 	font-size: 16px;
 }
@@ -79,8 +84,6 @@ label{
 }
 
 #form_container {
-	background-color: #000D1A;
-	opacity:.5;
 	height:20%;
 	/*-webkit-filter: blur(5px);
 	background-image: url('statemap.png');
@@ -99,14 +102,70 @@ label{
 	-webkit-filter: none !important;
 }
 
+input::-webkit-input-placeholder {
+    color: #999;
+}
+input:hover::-webkit-input-placeholder {
+    color: #FFF;
+}
+input:focus::-webkit-input-placeholder {
+    color: #585858;
+}
+
+/* Firefox < 19 */
+input:-moz-placeholder {
+    color: #999;
+}
+input:hover:-moz-placeholder {
+    color: #FFF;
+}
+input:focus:-moz-placeholder {
+    color: #585858;
+}
+
+/* Firefox > 19 */
+input::-moz-placeholder {
+    color: #999;
+}
+input:hover::-moz-placeholder {
+    color: #FFF;
+}
+input:focus::-moz-placeholder {
+    color: #585858;
+}
+
+/* Internet Explorer 10 */
+input:-ms-input-placeholder {
+    color: #999;
+}
+input:hover:-ms-input-placeholder {
+    color: #FFF;
+}
+input:focus:-ms-input-placeholder {
+    color: #585858;
+}
+
+input[type=text],input[type=password] {
+	width:300px;
+	font-size:20px;
+	color:#FFF;
+	background-color: #000D1A;
+}
+
+input[type=text]:hover,input[type=password]:hover {
+	color:#FFF;
+}
+
 input[type=submit] {
+	width:200px;
+	font-size:20px;
+	margin-top:10px;
 	padding:5px 15px; 
 	background:#ccc; 
 	border:0 none;
 	cursor:pointer;
 	-webkit-border-radius: 5px;
 	border-radius: 5px; 
-	font-size: 14px;
 }
 
 input[type=submit]:hover{
