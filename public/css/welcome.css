@@ -47,13 +47,22 @@ h1{
 
 }
 
-h3{
+h2{
+	font-size: 30px !important;
+}
+
+h2,h3{
 	color:white !important;
 	font-variant: small-caps;
 }
 
+.gold{
+	color:#268bef;
+}
+
 img{
 	height:400px;
+	padding:20px;
 }
 
 html,body{
@@ -186,7 +195,13 @@ input[type=submit]:hover{
 }
 
 .copy_content{
+	font-size:20px;
+	text-align: center;
 	height:100vh;
+}
+
+p{
+	text-align: left;
 }
 
 footer{

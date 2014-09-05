@@ -1,15 +1,24 @@
 body {
-	background-color:#000D1A !important;
+	/*background-color:#000D1A !important;*/
+	background-image: url("purphex.png");
+	background-size: 56px 32px;
+	background-size: 112px 65px;
+	overflow-x:hidden;
+
 	font-family: 'Lato', sans-serif !important;}
 
 h1{
 	font-size: 60px !important;
+	font-variant: small-caps;
+}
+
+.gold{
+	color:#268bef;
 }
 
 .container {
 	padding-bottom:10px;
 	padding-top:10px;
-	background-color:#000D1A;
 	border:none;
 	border-color:#6457F2;
 	border-width:10px;
@@ -17,9 +26,12 @@ h1{
 
 #detail_container{
 	background-color: white;
+	padding:15px!important;
 }
 
 #index_link {
+	background-color:#eee;
+	padding:5px;
 	display:inline;
 	font-size:22px;
 	margin-left:auto;

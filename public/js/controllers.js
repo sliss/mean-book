@@ -3,6 +3,8 @@ var townBookControllers = angular.module('townBookControllers', []);
 
 townBookControllers.controller('TownListCtrl', ['$scope', '$http',
   function ($scope, $http) {
+    $('body').scrollTop(0);
+
     $http.get('towns/towns.json').success(function(data) {
       $scope.towns = data;
     });
@@ -556,7 +558,8 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
 townBookControllers.controller('TownDetailCtrl', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
     console.log('detail control');
-    
+    $('body').scrollTop(0);
+
     $scope.storeComment = {};
     $scope.storeComment = function() {
       console.log('saving comment to DB');
