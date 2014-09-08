@@ -558,7 +558,8 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
 townBookControllers.controller('TownDetailCtrl', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
     console.log('detail control');
-    $('body').scrollTop(0);
+    $('#parallax_group').scrollTop(0);//animate({'scrollTop': 0})//$('parallax_group').scrollTop(0);
+    //window.scrollTo(0,0);//$('body').scrollTop(0);
 
     $scope.storeComment = {};
     $scope.storeComment = function() {
@@ -596,6 +597,8 @@ townBookControllers.controller('TownDetailCtrl', ['$scope', '$routeParams', '$ht
       $http.post('/getComment', body).success(function(comment) {
         console.log('comment loaded:', comment);
         $scope.comment = comment.commentText;
+        //$('parallax_base').scrollTop(0);
+
         //$scope.comment_id = comment._id;
         //console.log('comment id:', comment._id);
       });

@@ -24,12 +24,12 @@ html(lang='en', ng-app='townBookApp', xmlns:xlink='http://www.w3.org/1999/xlink'
     script(src='js/maMap.js')
     script(src='js/directives.js')
     div.parallax
-            div.parallax__group
+            div#parallax_group.parallax__group
                 div.parallax__layer--back
                 div.parallax__layer--base
                     .container(ng-view)
-    footer
-      a(href='/logout') Logout
-      br
-      | © 2014&nbsp&nbsp
-      a(href='http://stevenliss.com/') Steven B. Liss
+                    footer
+                      a(href='/logout') Logout
+                      br
+                      | © 2014&nbsp&nbsp
+                      a(href='http://stevenliss.com/') Steven B. Liss
