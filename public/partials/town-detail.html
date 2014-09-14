@@ -21,8 +21,13 @@
 	 <p>Established: {{town.established | number}} ({{2014 - town.established}} years old)</p>
  </div>
  </div>
- <div class="col-sm-6">
- 	<img ng-src="{{town.image_link}}">
+ <div id='minimap' class="col-sm-6" ng-if="map.isReady">
+ 	<!--<img ng-src="{{town.image_link}}">-->
+ 	<google-map id="townMap" center="map.center" zoom="map.zoom" dragable="map.dragable">
+		<marker coords='map.center' idKey='townCenter'></marker>
+ 	</google-map>
+
+
  </div>
  </div><!-- end row -->
  <br/><br/><br/><br/><br/>

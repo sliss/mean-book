@@ -560,7 +560,7 @@ townBookControllers.controller('TownDetailCtrl', ['$scope', '$routeParams', '$ht
     console.log('detail control');
     $('#parallax_group').scrollTop(0);//animate({'scrollTop': 0})//$('parallax_group').scrollTop(0);
     //window.scrollTo(0,0);//$('body').scrollTop(0);
-
+    
     $scope.storeComment = {};
     $scope.storeComment = function() {
       console.log('saving comment to DB');
@@ -588,6 +588,28 @@ townBookControllers.controller('TownDetailCtrl', ['$scope', '$routeParams', '$ht
     slug = slug.replace(".html","");
     $http.get('townJSON/' + slug + '.json').success(function(data) {
       $scope.town = data;
+      console.log('coordinates', data.coordinates);
+      $scope.map = {
+        center: {
+            latitude: data.coordinates[1],
+            longitude: data.coordinates[0]
+        },
+        zoom: 12,
+        dragable:'true',
+        isReady:true
+      };
+      
+      $scope.townCenter = [{
+        latitude: data.coordinates[1],
+        longitude: data.coordinates[0]
+      }];
+
+      var theMap = document.getElementById("townMap");
+
+      var marker = new google.maps.Marker({
+        position:$scope.townCenter,
+        map:theMap
+      });
       //load comments
       var body = {
         query_attribute:'townSlug',

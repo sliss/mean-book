@@ -29,6 +29,10 @@ h1{
 	padding:15px!important;
 }
 
+.angular-google-map-container { 
+	height: 400px;
+}
+
 #index_link {
 	background-color:#eee;
 	padding:5px;
