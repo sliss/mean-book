@@ -594,7 +594,7 @@ townBookControllers.controller('TownDetailCtrl', ['$scope', '$routeParams', '$ht
             latitude: data.coordinates[1],
             longitude: data.coordinates[0]
         },
-        zoom: 12,
+        zoom: 8,
         dragable:'true',
         isReady:true
       };
