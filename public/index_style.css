@@ -121,7 +121,7 @@ section, footer, header, aside, nav{
 */
 	box-shadow: 0 2px 2px #D1A002;
 	border-radius: 2px;
-	width: 66%;
+	width: 100%;
 	padding: 14px;
 	margin: 45px auto 20px;
 	margin-top:10px;
@@ -137,7 +137,7 @@ section, footer, header, aside, nav{
 .select_menu {
    background-color:#F7F7F7;
    margin: -5px auto 15px;
-   width: 268px;
+   width: 100%;
    padding: 5px;
    font-size: 16px;
    line-height: 1;
@@ -206,4 +206,19 @@ section, footer, header, aside, nav{
 	padding-top: 12px;
 	color:#FFF
 
+}
+
+#client_login {
+	font-size:16px;
+}
+
+#display{
+	color:white;
+	font-size: 20px;
+	text-align: right;
+}
+
+#analysis{
+	position:relative;
+	top:500px;
 }
