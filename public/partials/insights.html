@@ -5,6 +5,7 @@
 </div>
   <div class = 'row'>
     <div class = 'col-md-9'>
+<div class='row'>
       <theMap>
           <div id = "mapLoadSpinner" class="text-center">
           <img src="loader_bar.gif">
@@ -39,7 +40,39 @@
         <legendBoxes></legendBoxes>
         <legendLabels></legendLabels>
       </div>
-    </div>
+</div>
+ <!-- analysis box -->
+  <div class='row' id='analysis'>
+        <div ng-switch="orderProp">
+        <div ng-switch-when="population" >
+      <div class='col-xs-6'>
+      <li ng-repeat="town in towns | orderBy:orderProp:true | limitTo:quantity">
+        <p class="dynamic">
+                <span class="town_name"><a href="#/towns/{{town.slug}}.html">{{town.name | uppercase}}</a></span> <span class="stat_display">{{town.population | number}} </span>
+            </p>
+          </li>
+        </div>
+<div class='col-xs-6'>
+        <li ng-repeat="town in towns | orderBy:orderProp:false | limitTo:quantity">
+      <p class="dynamic">
+              <span class="town_name"><a href="#/towns/{{town.slug}}.html">{{town.name | uppercase}}</a></span> <span class="stat_display">{{town.population | number}} </span>
+          </p>
+        </li>
+      </div>
+        </div>
+      </div>
+
+      <div ng-switch-when="r_deviance_sigma" >
+        
+       <p >
+      r dev sig infos
+        </p>
+      </div>
+   </div>
+
+  
+  <!-- end analysis box-->
+    </div><!--end map col-->
     <div class = 'col-md-3'>
       <div class="container-fluid">
     <div class="row-fluid">

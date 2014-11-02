@@ -125,17 +125,17 @@ townBookDirectives.directive('publicMap', function() {
 			    .attr("height", height)
 			    .attr("xmlns","http://www.w3.org/2000/svg")
 			    .attr("version",1.1);  
+			
+			
 
 			d3.json("MA_Topo_Properties.json", function(error, ma) {
 			  svg.selectAll(".town")
 			    .data(topojson.feature(ma, ma.objects.MA_Towns).features)
 			  .enter()
-			  .append("a")
-			  	.attr("xlink:href", function(d) { return "/#/towns/" + d.properties.TOWN.toLowerCase().replace(' ','_'); })
-			  	.attr("title", function(d) { return d.properties.TOWN; })
 			  .append("path")
 			    //.attr("class", function(d) { return "town " + d.properties.TOWN; })
 			    .attr("class", function(d) { return "town " + d.properties.TOWN; })
+			    .attr("title", function(d) { return "town " + d.properties.TOWN; })
 			    .style("fill", function(d) { return color(d.properties.p_unenrolled); })
 			    .attr("d", path);
 

@@ -10,7 +10,7 @@
 
       <div my-first-directive></div>
   </theMap>
-  <div id="legend">
+  <div id="legend" style="position:relative;left:-150px;">
     <legendBoxes></legendBoxes>
     <legendLabels></legendLabels>
   </div>
@@ -29,7 +29,7 @@
 	<div class="bar">
         <input ng-model="query" placeholder="Search MA towns">
     </div>
-        Sort by:
+        <p>Sort by:</p>
         <select class="select_menu" ng-model="orderProp">
           <option value="name">Name</option>
           <option value="population">Population</option>

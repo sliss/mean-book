@@ -574,6 +574,7 @@ townBookControllers.controller('InsightsCtrl', ['$scope', '$http',
 
     $scope.keys = [];
     $scope.comments = [];
+    $scope.quantity = 10;
 
     $scope.$watch("orderProp", function() {
       console.log("orderprop changed to " + $scope.orderProp);
