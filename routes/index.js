@@ -27,6 +27,19 @@ function userExist(req, res, next) {
     });
 }*/
 
+// check if logged in
+
+exports.loginCheck = function() {
+  return function(req, res) {
+    if(req.isAuthenticated()){
+      res.send(true);
+    }
+    else {
+      res.send(false);
+    }
+  }
+};
+
 exports.index = function(Todo) {
   return function(req, res) {
     console.log("routes -> index.js -> index");

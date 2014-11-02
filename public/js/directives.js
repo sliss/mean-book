@@ -132,6 +132,8 @@ townBookDirectives.directive('publicMap', function() {
 			  svg.selectAll(".town")
 			    .data(topojson.feature(ma, ma.objects.MA_Towns).features)
 			  .enter()
+			  .append("a")
+			  	.attr("xlink:href", function(d) { return './'; })
 			  .append("path")
 			    //.attr("class", function(d) { return "town " + d.properties.TOWN; })
 			    .attr("class", function(d) { return "town " + d.properties.TOWN; })

@@ -10,13 +10,15 @@ var townBookApp = angular.module('townBookApp', [
 townBookApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/insights', {
+      when('/massachusetts', {
           templateUrl: 'partials/insights.html',
-          controller: 'InsightsCtrl'
+          controller: 'InsightsCtrl',
+          requireLogin: false
       }).
       when('/', {
         templateUrl: 'partials/town-list.html',
-        controller: 'TownListCtrl'
+        controller: 'TownListCtrl',
+        requireLogin: true
       }).
       when('/towns/:townSlug', {
         templateUrl: 'partials/town-detail.html',

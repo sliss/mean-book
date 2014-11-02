@@ -123,6 +123,9 @@ app.get('/logout', function(req, res){
 //load towns from DB
 app.get('/towns.json', routes.get(Town));
 
+//check if logged in
+app.get('/login_check', routes.loginCheck());
+
 
 //app.put('/todo/:id.json', routes.update(Todo));
 app.put('/town/:id.json', routes.update(Town));
