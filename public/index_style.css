@@ -1,6 +1,7 @@
 *{
 	margin:0;
 	padding:0;
+	color:white;
 }
 
 html{
@@ -79,6 +80,15 @@ footer{
 	float:right;
 	margin-right:10%;
 	color:#eee !important;
+}
+
+.stat_title {
+	color:#eee !important;
+	font-size: 18px;
+}
+
+statkey {
+	color:#428bca !important;
 }
 
 #legend{

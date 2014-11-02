@@ -942,7 +942,7 @@ townBookControllers.controller('InsightsCtrl', ['$scope', '$http',
           ; 
           break;    
 
-        case "delta_local_aid_percentage":
+        case "delta_local_aid_per_capita":
         clearLegend();
           var data_domain=[10,20,30, 40,50, 60,70, 80,90, 100];
           var color = d3.scale.threshold()

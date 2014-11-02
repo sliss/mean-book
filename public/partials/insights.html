@@ -1,6 +1,7 @@
 
 <div id="heading">
 <h1>State <span class="gold">Insight</span>  - Massachusetts</h1>
+<h3>Hundreds of towns.  Millions of voters.  One tool.</h3>
 <a id='client_login' href='/'>Client Login</a>
 </div>
   <div class = 'row'>
@@ -23,13 +24,13 @@
           <option value="r_deviance">GOP Over/underperformance</option>
           <option value="r_deviance_sigma">GOP Over/underperformance (sigma)</option>
           <option value="p_participation">% Voter Turnout</option>
-          <option value="percent_registered_unenrolled">% Unenrolled</option>
+          <option value="percent_registered_unenrolled">Registered Independents</option>
           <option value="p_baker">% Baker 2010</option>
           <option value="p_patrick">% Patrick 2010</option>
           <option value="percent_registered_republicans">% Registered Republicans</option>
           <option value="unemployment_percentage">Unemployment (May 2014)</option>
           <option value="local_aid_2013">Local Aid 2015</option>
-          <option value="delta_local_aid_percentage">Local Aid Decrease '08-'13</option>
+          <option value="delta_local_aid_per_capita">Local Aid Decrease Per Capita '08-'13</option>
         </select>
     </div>
   </div>
@@ -43,35 +44,278 @@
 </div>
  <!-- analysis box -->
   <div class='row' id='analysis'>
+    <h2 class = "text-center">Top 10</h2>
+    <br/>
         <div ng-switch="orderProp">
+        <!-- ********* -->
         <div ng-switch-when="population" >
       <div class='col-xs-6'>
-      <li ng-repeat="town in towns | orderBy:orderProp:true | limitTo:quantity">
+        <p class='stat_title'>
+          Most Populous
+        </p>
+      <div ng-repeat="town in towns | orderBy:orderProp:true | limitTo:quantity">
         <p class="dynamic">
-                <span class="town_name"><a href="#/towns/{{town.slug}}.html">{{town.name | uppercase}}</a></span> <span class="stat_display">{{town.population | number}} </span>
+                <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.population | number}} </span>
             </p>
-          </li>
+          </div>
         </div>
 <div class='col-xs-6'>
-        <li ng-repeat="town in towns | orderBy:orderProp:false | limitTo:quantity">
+  <p class='stat_title'>
+    Least Populous
+  </p>
+        <div ng-repeat="town in towns | orderBy:orderProp:false | limitTo:quantity">
       <p class="dynamic">
-              <span class="town_name"><a href="#/towns/{{town.slug}}.html">{{town.name | uppercase}}</a></span> <span class="stat_display">{{town.population | number}} </span>
+              <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.population | number}} </span>
           </p>
-        </li>
-      </div>
         </div>
       </div>
+        </div>
 
-      <div ng-switch-when="r_deviance_sigma" >
-        
-       <p >
-      r dev sig infos
+<!-- ********* -->
+        <div ng-switch-when="r_deviance" >
+      <div class='col-xs-6'>
+        <p class='stat_title'>
+          Overperform for Republicans
+        </p>
+      <div ng-repeat="town in towns | orderBy:orderProp:true | limitTo:quantity">
+        <p class="dynamic">
+                <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.r_deviance | number:1}}% </span>
+            </p>
+          </div>
+        </div>
+<div class='col-xs-6'>
+  <p class='stat_title'>
+    Underperform for Republicans
+  </p>
+        <div ng-repeat="town in towns | orderBy:orderProp:false | limitTo:quantity">
+      <p class="dynamic">
+              <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.r_deviance | number:1}}% </span>
+          </p>
+        </div>
+      </div>
+        </div>
+
+        <!-- ********* -->
+        <div ng-switch-when="r_deviance_sigma" >
+      <div class='col-xs-6'>
+        <p class='stat_title'>
+          Overperform for Republicans (standard deviations)
+        </p>
+      <div ng-repeat="town in towns | orderBy:orderProp:true | limitTo:quantity">
+        <p class="dynamic">
+                <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.r_deviance_sigma | number:2}}&sigma;</span>
+            </p>
+          </div>
+        </div>
+<div class='col-xs-6'>
+  <p class='stat_title'>
+    Underperform for Republicans
+  </p>
+        <div ng-repeat="town in towns | orderBy:orderProp:false | limitTo:quantity">
+      <p class="dynamic">
+              <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.r_deviance_sigma | number:2}}&sigma;</span>
+          </p>
+        </div>
+      </div>
+        </div>
+
+    <!-- ********* -->
+    <div ng-switch-when="p_participation" >
+  <div class='col-xs-6'>
+    <p class='stat_title'>
+      Highest Voter Turnout
+    </p>
+  <div ng-repeat="town in towns | orderBy:orderProp:true | limitTo:quantity">
+    <p class="dynamic">
+            <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.p_participation | number:1}}% </span>
         </p>
       </div>
-   </div>
+    </div>
+<div class='col-xs-6'>
+  <p class='stat_title'>
+    Lowest Voter Turnout
+  </p>
+        <div ng-repeat="town in towns | orderBy:orderProp:false | limitTo:quantity">
+      <p class="dynamic">
+              <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.p_participation | number:1}}% </span>
+          </p>
+        </div>
+      </div>
+        </div>
+
+        <!-- ********* -->
+    <div ng-switch-when="percent_registered_unenrolled" >
+  <div class='col-xs-6'>
+    <p class='stat_title'>
+      Most Independent
+    </p>
+  <div ng-repeat="town in towns | orderBy:orderProp:true | limitTo:quantity">
+    <p class="dynamic">
+            <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.percent_registered_unenrolled | number:1}}% </span>
+        </p>
+      </div>
+    </div>
+<div class='col-xs-6'>
+  <p class='stat_title'>
+    Most Partisan
+  </p>
+        <div ng-repeat="town in towns | orderBy:orderProp:false | limitTo:quantity">
+      <p class="dynamic">
+              <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.percent_registered_unenrolled | number:1}}% </span>
+          </p>
+        </div>
+      </div>
+        </div>
+
+         <!-- ********* -->
+    <div ng-switch-when="p_baker" >
+  <div class='col-xs-6'>
+    <p class='stat_title'>
+      Baker's Biggest Wins in 2010
+    </p>
+  <div ng-repeat="town in towns | orderBy:orderProp:true | limitTo:quantity">
+    <p class="dynamic">
+            <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.p_baker | number:1}}% </span>
+        </p>
+      </div>
+    </div>
+<div class='col-xs-6'>
+  <p class='stat_title'>
+    Baker's Worst Losses in 2010
+  </p>
+        <div ng-repeat="town in towns | orderBy:orderProp:false | limitTo:quantity">
+      <p class="dynamic">
+              <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.p_baker | number:1}}% </span>
+          </p>
+        </div>
+      </div>
+        </div>
+
+        <!-- ********* -->
+    <div ng-switch-when="p_patrick" >
+  <div class='col-xs-6'>
+    <p class='stat_title'>
+      Patrick's Biggest Wins in 2010
+    </p>
+  <div ng-repeat="town in towns | orderBy:orderProp:true | limitTo:quantity">
+    <p class="dynamic">
+            <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.p_patrick | number:1}}% </span>
+        </p>
+      </div>
+    </div>
+<div class='col-xs-6'>
+  <p class='stat_title'>
+    Patrick's Worst Losses in 2010
+  </p>
+        <div ng-repeat="town in towns | orderBy:orderProp:false | limitTo:quantity">
+      <p class="dynamic">
+              <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.p_patrick | number:1}}% </span>
+          </p>
+        </div>
+      </div>
+        </div>
+
+        <!-- ********* -->
+    <div ng-switch-when="percent_registered_republicans" >
+  <div class='col-xs-6'>
+    <p class='stat_title'>
+      Most Republican
+    </p>
+  <div ng-repeat="town in towns | orderBy:orderProp:true | limitTo:quantity">
+    <p class="dynamic">
+            <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.percent_registered_republicans | number:1}}% </span>
+        </p>
+      </div>
+    </div>
+<div class='col-xs-6'>
+  <p class='stat_title'>
+    Least Republican
+  </p>
+        <div ng-repeat="town in towns | orderBy:orderProp:false | limitTo:quantity">
+      <p class="dynamic">
+              <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.percent_registered_republicans | number:1}}% </span>
+          </p>
+        </div>
+      </div>
+        </div>
+
+        <!-- ********* -->
+    <div ng-switch-when="unemployment_percentage" >
+  <div class='col-xs-6'>
+    <p class='stat_title'>
+      Lowest Unemployment
+    </p>
+  <div ng-repeat="town in towns | orderBy:orderProp:true | limitTo:quantity">
+    <p class="dynamic">
+            <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.unemployment_percentage | number:1}}% </span>
+        </p>
+      </div>
+    </div>
+<div class='col-xs-6'>
+  <p class='stat_title'>
+    Highest Unemployment
+  </p>
+        <div ng-repeat="town in towns | orderBy:orderProp:false | limitTo:quantity">
+      <p class="dynamic">
+              <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.unemployment_percentage | number:1}}% </span>
+          </p>
+        </div>
+      </div>
+        </div>
+
+<!-- ********* -->
+    <div ng-switch-when="local_aid_2013" >
+  <div class='col-xs-6'>
+    <p class='stat_title'>
+      Most Local Aid Received
+    </p>
+  <div ng-repeat="town in towns | orderBy:orderProp:true | limitTo:quantity">
+    <p class="dynamic">
+            <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">${{town.local_aid_2015 | number}} </span>
+        </p>
+      </div>
+    </div>
+<div class='col-xs-6'>
+  <p class='stat_title'>
+    Least Local Aid Received
+  </p>
+        <div ng-repeat="town in towns | orderBy:orderProp:false | limitTo:quantity">
+      <p class="dynamic">
+              <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">${{town.local_aid_2015 | number}} </span>
+          </p>
+        </div>
+      </div>
+        </div>
+
+        <!-- ********* -->
+    <div ng-switch-when="delta_local_aid_per_capita" >
+  <div class='col-xs-6'>
+    <p class='stat_title'>
+      Biggest Local Aid Cuts Per Capita
+    </p>
+  <div ng-repeat="town in towns | orderBy:orderProp:false | limitTo:quantity">
+    <p class="dynamic">
+            <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">-${{-1*town.delta_local_aid_per_capita | number:2}} </span>
+        </p>
+      </div>
+    </div>
+<div class='col-xs-6'>
+  <p class='stat_title'>
+    Smallest Local Aid Cuts Per Capita
+  </p>
+        <div ng-repeat="town in towns | orderBy:orderProp:true | limitTo:quantity">
+      <p class="dynamic">
+              <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">-${{-1*town.delta_local_aid_per_capita | number:2}} </span>
+          </p>
+        </div>
+      </div>
+        </div>
+
+      </div> <!-- end switch -->
+   </div>  <!-- end analysis row-->
+
 
   
-  <!-- end analysis box-->
     </div><!--end map col-->
     <div class = 'col-md-3'>
       <div class="container-fluid">
@@ -97,7 +341,7 @@
         <ul ng-switch-when="population" >
       <li ng-repeat="town in towns | searchName:query | orderBy:orderProp:true">
         <p class="dynamic">
-                <span class="town_name"><a href="#/towns/{{town.slug}}.html">{{town.name | uppercase}}</a></span> <span class="stat_display">{{town.population | number}} </span>
+                <span class="town_name"><statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.population | number}} </span>
             </p>
           </li>
         </ul>
@@ -132,7 +376,7 @@
         <ul >
       <li ng-repeat="town in towns | searchName:query | orderBy:orderProp:true">
         <p class="dynamic">
-                <span class="town_name"><a href="#/towns/{{town.slug}}.html">{{town.name | uppercase}}</a></span> <span class="stat_display">{{town.p_participation | number:1}}% </span>
+                <span class="town_name"><statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.p_participation | number:1}}% </span>
             </p>
           </li>
         </ul>
@@ -141,17 +385,17 @@
         <ul ng-switch-when="unemployment_percentage" >
       <li ng-repeat="town in towns | searchName:query | orderBy:orderProp:true">
         <p class="dynamic">
-                <span class="town_name"><a href="#/towns/{{town.slug}}.html">{{town.name | uppercase}}</a></span> <span class="stat_display">{{town.unemployment_percentage | number:1}}% </span>
+                <span class="town_name"><statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.unemployment_percentage | number:1}}% </span>
             </p>
           </li>
         </ul>
         
-        <div ng-switch-when="delta_local_aid_percentage">
+        <div ng-switch-when="delta_local_aid_per_capita">
         <ul>
                 <p class="asterisk">Decrease per capita</p>
       <li ng-repeat="town in towns | searchName:query | orderBy:orderProp:false">
         <p class="dynamic">
-                <span class="town_name"><a href="#/towns/{{town.slug}}.html">{{town.name | uppercase}}</a></span> <span class="stat_display">{{town.delta_local_aid_percentage | number:1}}% </span>
+                <span class="town_name"><statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">-${{-1*town.delta_local_aid_per_capita | number:2}} </span>
             </p>
           </li>
         </ul>
@@ -160,7 +404,7 @@
         <ul ng-switch-when="local_aid_2013" >
       <li ng-repeat="town in towns | searchName:query | orderBy:orderProp:true">
         <p class="dynamic">
-                <span class="town_name"><a href="#/towns/{{town.slug}}.html">{{town.name | uppercase}}</a></span> <span class="stat_display">${{town.local_aid_2015 | number}} </span>
+                <span class="town_name"><statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">${{town.local_aid_2015 | number}} </span>
             </p>
           </li>
         </ul>
@@ -168,7 +412,7 @@
         <ul ng-switch-when="percent_registered_republicans" >
       <li ng-repeat="town in towns | searchName:query | orderBy:orderProp:true">
         <p class="dynamic">
-                <span class="town_name"><a href="#/towns/{{town.slug}}.html">{{town.name | uppercase}}</a></span> <span class="stat_display">{{town.percent_registered_republicans | number:1}}% </span>
+                <span class="town_name"><statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.percent_registered_republicans | number:1}}% </span>
             </p>
           </li>
         </ul>
@@ -176,7 +420,7 @@
         <ul ng-switch-when="percent_registered_unenrolled" >
       <li ng-repeat="town in towns | searchName:query | orderBy:orderProp:true">
         <p class="dynamic">
-                <span class="town_name"><a href="#/towns/{{town.slug}}.html">{{town.name | uppercase}}</a></span> <span class="stat_display">{{town.percent_registered_unenrolled | number:1}}% </span>
+                <span class="town_name"><statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.percent_registered_unenrolled | number:1}}% </span>
             </p>
           </li>
         </ul>
@@ -184,7 +428,7 @@
        <ul ng-switch-when="p_baker" >
       <li ng-repeat="town in towns | searchName:query | orderBy:orderProp:true">
         <p class="dynamic">
-                <span class="town_name"><a href="#/towns/{{town.slug}}.html">{{town.name | uppercase}}</a></span> <span class="stat_display">{{town.p_baker | number:1}}% </span>
+                <span class="town_name"><statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.p_baker | number:1}}% </span>
             </p>
           </li>
         </ul> 
@@ -192,7 +436,7 @@
         <ul ng-switch-when="p_patrick" >
       <li ng-repeat="town in towns | searchName:query | orderBy:orderProp:true">
         <p class="dynamic">
-                <span class="town_name"><a href="#/towns/{{town.slug}}.html">{{town.name | uppercase}}</a></span> <span class="stat_display">{{town.p_patrick | number:1}}% </span>
+                <span class="town_name"><statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.p_patrick | number:1}}% </span>
             </p>
           </li>
         </ul> 
