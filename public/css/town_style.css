@@ -58,13 +58,13 @@ legendLabels,legendBoxes {
 	display: block;
 	margin:auto;
 	position:relative;
-	left:-150px;
 	top:-150px;
 	font-family: sans-serif !important;
 }
 
 legendLabels{
-	top:-170px;
+	top:-150px;
+	left:-15px;
 
 }
 

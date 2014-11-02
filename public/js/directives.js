@@ -96,6 +96,71 @@ townBookDirectives.directive('myFirstDirective', function() {
 	}	
 });
 
+townBookDirectives.directive('publicMap', function() {
+    // return the directive link function.
+    return {
+    	scope: { mapMode: '=' },
+    	link: function() {
+	        console.log("public directive confirmed.");
+
+
+			var color = d3.scale.threshold()
+		        .domain([10, 20, 30, 40, 50, 60, 70, 80])
+		        .range(["#fff7ec", "#fee8c8", "#fdd49e", "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#b30000", "#7f0000"]);
+
+			var width = 700,
+			    height = 460;
+
+			var projection = d3.geo.mercator()
+			    .center([-71.7, 42])
+			    .rotate([0, 0])
+			    .scale(11000)
+			    .translate([width / 2, height / 2]);
+
+			var path = d3.geo.path()
+			    .projection(projection);
+
+			var svg = d3.select("theMap").append("svg")
+			    .attr("width", width)
+			    .attr("height", height)
+			    .attr("xmlns","http://www.w3.org/2000/svg")
+			    .attr("version",1.1);  
+
+			d3.json("MA_Topo_Properties.json", function(error, ma) {
+			  svg.selectAll(".town")
+			    .data(topojson.feature(ma, ma.objects.MA_Towns).features)
+			  .enter()
+			  .append("a")
+			  	.attr("xlink:href", function(d) { return "/#/towns/" + d.properties.TOWN.toLowerCase().replace(' ','_'); })
+			  	.attr("title", function(d) { return d.properties.TOWN; })
+			  .append("path")
+			    //.attr("class", function(d) { return "town " + d.properties.TOWN; })
+			    .attr("class", function(d) { return "town " + d.properties.TOWN; })
+			    .style("fill", function(d) { return color(d.properties.p_unenrolled); })
+			    .attr("d", path);
+
+			     
+
+			  
+
+			  svg.append("path")
+			      .datum(topojson.mesh(ma, ma.objects.MA_Towns, function(a, b) { return a !== b; }))
+			      .attr("class", "tract-border")
+			      .attr("d", path);  
+			  console.log('render map complete');
+			  $('#mapLoadSpinner').hide();  
+			  $('#legend').show();  
+
+
+					});
+
+			//console.log(d3.select(".HINGHAM").enter().d.properties.SHAPE_AREA);
+			//d3.select(".HINGHAM").attr("title", "selectify!");
+			
+			}
+	}	
+});
+
 townBookDirectives.directive('resultsChart', function() {
     // return the directive link function.
     return {

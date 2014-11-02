@@ -44,6 +44,18 @@ exports.index = function(Todo) {
   };
 };
 
+exports.insights = function(Todo) {
+  return function(req, res) {
+    console.log("routes -> index.js -> insights");
+    Todo.find({}, function(error, todos) {
+      res.render('insights', {
+        title: 'State Insight - Insights',
+        todos : todos
+      });
+    });
+  };
+};
+
 // get data from mongo.  called from controller.
 
 exports.get = function(Town) {

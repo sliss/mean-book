@@ -130,6 +130,7 @@ app.put('/town/:id.json', routes.update(Town));
 app.post('/addComment', routes.addComment(Comment));
 app.post('/load_data', routes.loadData(Town));
 app.get('/', routes.index(Todo));
+app.get('/insights', routes.insights(Todo));
 app.post('/getComment', routes.getComment(Comment));
 
 
