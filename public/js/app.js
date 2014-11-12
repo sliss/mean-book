@@ -18,7 +18,7 @@ townBookApp.config(['$routeProvider',
       when('/', {
         templateUrl: 'partials/town-list.html',
         controller: 'TownListCtrl',
-        requireLogin: true
+        requireLogin: false
       }).
       when('/towns/:townSlug', {
         templateUrl: 'partials/town-detail.html',

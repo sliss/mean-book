@@ -4,8 +4,8 @@ var townBookControllers = angular.module('townBookControllers', []);
 townBookControllers.controller('TownListCtrl', ['$scope', '$http',
   function ($scope, $http) {
     $('body').scrollTop(0);
-    $http.get('login_check').success(function(resp) {
-      if(Boolean(JSON.parse(resp))){
+    //$http.get('login_check').success(function(resp) {
+      if(true/*Boolean(JSON.parse(resp))*/){
         console.log('tb control');
         $http.get('towns/towns.json').success(function(data) {
           $scope.towns = data;
@@ -642,7 +642,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
           console.log('not logged in');
           window.location = "./";
       }
-    });
+    //});
 
     
   }]);
@@ -662,7 +662,7 @@ townBookControllers.controller('InsightsCtrl', ['$scope', '$http',
       d3.select("legendLabels").select('svg').remove();
     }  
  
-    $scope.orderProp = 'percent_registered_unenrolled';
+    $scope.orderProp = 'p_baker_gains';
 
     $scope.keys = [];
     $scope.comments = [];
