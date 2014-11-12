@@ -20,11 +20,13 @@
          <div class= 'col-xs-6'>
 
         <select class="select_menu" ng-model="orderProp">
+          <option value="p_baker_gains">Baker Electoral Gains '10 - '14</option> 
           <option value="population">Population</option>
           <option value="r_deviance">GOP Over/underperformance</option>
           <option value="r_deviance_sigma">GOP Over/underperformance (sigma)</option>
           <option value="p_participation">% Voter Turnout</option>
           <option value="percent_registered_unenrolled">Registered Independents</option>
+          <option value="baker14">% Baker 2014</option>
           <option value="p_baker">% Baker 2010</option>
           <option value="p_patrick">% Patrick 2010</option>
           <option value="percent_registered_republicans">% Registered Republicans</option>
@@ -70,6 +72,58 @@
         </div>
       </div>
         </div>
+
+<!-- ********* -->
+        <div ng-switch-when="p_baker_gains" >
+      <div class='col-xs-6'>
+        <p class='stat_title'>
+          Baker's Biggest Gains in 2014
+        </p>
+      <div ng-repeat="town in towns | orderBy:orderProp:true | limitTo:quantity">
+        <p class="dynamic">
+                <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.p_baker_gains | number:1}}% </span>
+            </p>
+          </div>
+        </div>
+<div class='col-xs-6'>
+  <p class='stat_title'>
+    Baker's Smallest Gains in 2014
+  </p>
+        <div ng-repeat="town in towns | orderBy:orderProp:false | limitTo:quantity">
+      <p class="dynamic">
+              <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.p_baker_gains | number:1}}% </span>
+          </p>
+        </div>
+      </div>
+        </div>
+
+        <!-- ********* -->
+
+<!-- ********* -->
+        <div ng-switch-when="baker14" >
+      <div class='col-xs-6'>
+        <p class='stat_title'>
+          Baker's Biggest Wins in 2010
+        </p>
+      <div ng-repeat="town in towns | orderBy:orderProp:true | limitTo:quantity">
+        <p class="dynamic">
+                <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.baker14 | number:1}}% </span>
+            </p>
+          </div>
+        </div>
+<div class='col-xs-6'>
+  <p class='stat_title'>
+    Baker's Worst Losses in 2014
+  </p>
+        <div ng-repeat="town in towns | orderBy:orderProp:false | limitTo:quantity">
+      <p class="dynamic">
+              <span class="town_name">{{$index + 1}}. <statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.baker14 | number:1}}% </span>
+          </p>
+        </div>
+      </div>
+        </div>
+
+        <!-- ********* -->
 
 <!-- ********* -->
         <div ng-switch-when="r_deviance" >
@@ -358,6 +412,21 @@
         </ul>
    </div>
 
+
+    <div ng-switch-when="p_baker_gains" >
+       <ul >
+     
+        
+      <li ng-repeat="town in towns | searchName:query | orderBy:orderProp:true">
+        <p class="dynamic">
+                <span class="town_name"><a href="#/towns/{{town.slug}}">{{town.name | uppercase}}</a></span> <span class="stat_display">{{town.p_baker_gains | number:1}}%</span>
+            </p>
+
+          </li>
+        </ul> 
+        </div> 
+
+
         <div ng-switch-when="r_deviance" >
        <ul >
      
@@ -432,6 +501,14 @@
             </p>
           </li>
         </ul> 
+
+      <ul ng-switch-when="baker14" >
+      <li ng-repeat="town in towns | searchName:query | orderBy:orderProp:true">
+        <p class="dynamic">
+                <span class="town_name"><statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.baker14 | number:1}}% </span>
+            </p>
+          </li>
+        </ul>
 
         <ul ng-switch-when="p_patrick" >
       <li ng-repeat="town in towns | searchName:query | orderBy:orderProp:true">

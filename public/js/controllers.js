@@ -30,6 +30,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
 
           switch($scope.orderProp) {
             case "name":
+            console.log('map districts');
             clearLegend();
               var data_domain=[1, 2, 3, 4, 5, 6, 7, 8];
               var color = d3.scale.threshold()
@@ -69,7 +70,49 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
               ;  
               break;
 
+            case "p_baker_gains":
+              console.log('map p_baker gains');
+              clearLegend();
+                var data_domain=[0, 3, 6, 9, 12, 15];
+              var color = d3.scale.threshold()
+                .domain(data_domain)
+                .range(['#1D21F5','#3B20D3','#5A20B1','#79208F','#981F6D','#B71F4B','#D61F29']);
+               d3.selectAll(".town")
+                .style("fill", function(d) { return color(d.properties.baker14 - d.properties.p_baker); });
+                var legend_width;
+
+              var legend = d3.select("legendBoxes").append("svg")
+                .attr("width", 210)
+                .attr("height", box_size); 
+
+              var legend_labels = d3.select("legendLabels").append("svg")
+                .attr("width", 231)
+                .attr("height", legendLabelsHeight);     
+
+              legend.selectAll("legend_box").data(data_domain).enter()
+                  .append('rect')
+                    .attr('width',box_size)
+                    .attr('height',box_size)
+                    .style('fill',function(d) { return color(d); })  
+                    .attr('x', function(d, i) {return (i*box_size)})
+                    .attr('y', 0) 
+                  ; 
+                  
+
+              legend_labels.selectAll("legend_label").data(data_domain).enter()
+                .append('text')
+                      .text(function (d) {return d + '%'})
+                      .style('fill',legendLabelsColor)
+                      .style("text-anchor", "left")
+                      .attr('font-size','10px')
+                      .attr('x', function(d, i) {return (20+i*box_size)})
+                    .attr('y', legendLabelsHeight)    
+              ; 
+              break;
+
             case "population":
+            console.log('map population');
+
             clearLegend();
               var data_domain=[1, 10, 50, 100, 500, 1000, 2000, 5000];
               var color = d3.scale.threshold()
@@ -508,6 +551,7 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
               break;       
 
             default:
+             console.log('default');
              clearLegend();
               var data_domain=[1, 2, 3, 4, 5, 6, 7, 8];
               var color = d3.scale.threshold()
@@ -632,12 +676,53 @@ townBookControllers.controller('InsightsCtrl', ['$scope', '$http',
           ; 
           break;
 
+        case "p_baker_gains":
+              console.log('map p_baker gains');
+              clearLegend();
+                var data_domain=[-3, 0, 3, 6, 9, 12, 15, 18];
+              var color = d3.scale.threshold()
+                .domain(data_domain)
+                .range(["#999DEA", "#999DEA", "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#b30000", "#7f0000", "#7f0000"]);
+               d3.selectAll(".town")
+                .style("fill", function(d) { return color(d.properties.baker14 - d.properties.p_baker); });
+                var legend_width;
+
+              var legend = d3.select("legendBoxes").append("svg")
+                .attr("width", 210)
+                .attr("height", box_size); 
+
+              var legend_labels = d3.select("legendLabels").append("svg")
+                .attr("width", 231)
+                .attr("height", legendLabelsHeight);     
+
+              legend.selectAll("legend_box").data(data_domain).enter()
+                  .append('rect')
+                    .attr('width',box_size)
+                    .attr('height',box_size)
+                    .style('fill',function(d) { return color(d); })  
+                    .attr('x', function(d, i) {return (i*box_size)})
+                    .attr('y', 0) 
+                  ; 
+                  
+
+              legend_labels.selectAll("legend_label").data(data_domain).enter()
+                .append('text')
+                      .text(function (d) {return d + '%'})
+                      .style('fill',legendLabelsColor)
+                      .style("text-anchor", "left")
+                      .attr('font-size','10px')
+                      .attr('x', function(d, i) {return (20+i*box_size)})
+                    .attr('y', legendLabelsHeight)    
+              ; 
+              break;
+
+
         case "r_deviance_sigma":
           clearLegend();
           var data_domain = [0, 1, 1.5];
           var color = d3.scale.threshold()
             .domain(data_domain)
-            .range(['#1D21F5','#6520A5','#AD1F56','#F51F07']);
+            .range(['#1D21F5','#6520A5','#AD1F56','#F51F07', '#F51F07']);
            d3.selectAll(".town")
             .style("fill", function(d) { 
               return color(d.properties.r_deviance_sigma); });
@@ -868,7 +953,46 @@ townBookControllers.controller('InsightsCtrl', ['$scope', '$http',
                   .attr('x', function(d, i) {return (20+i*box_size)})
                 .attr('y', legendLabelsHeight)    
           ; 
-          break;    
+          break;
+
+        case "baker14":
+            clearLegend();
+              var data_domain=[10, 20, 30, 40, 50, 60,70, 80, 90, 100];
+              var color = d3.scale.threshold()
+                .domain(data_domain)
+                .range(["#fff7ec", "#fee8c8", "#fdd49e", "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#b30000", "#7f0000"]);
+               d3.selectAll(".town")
+                .style("fill", function(d) { return color(d.properties.baker14); });
+                var legend_width;
+
+              var legend = d3.select("legendBoxes").append("svg")
+                .attr("width", 210)
+                .attr("height", box_size); 
+
+              var legend_labels = d3.select("legendLabels").append("svg")
+                .attr("width", 231)
+                .attr("height", legendLabelsHeight);     
+
+              legend.selectAll("legend_box").data(data_domain).enter()
+                  .append('rect')
+                    .attr('width',box_size)
+                    .attr('height',box_size)
+                    .style('fill',function(d) { return color(d); })  
+                    .attr('x', function(d, i) {return (i*box_size)})
+                    .attr('y', 0) 
+                  ; 
+                  
+
+              legend_labels.selectAll("legend_label").data(data_domain).enter()
+                .append('text')
+                      .text(function (d) {return d + '%'})
+                      .style('fill',legendLabelsColor)
+                      .style("text-anchor", "left")
+                      .attr('font-size','10px')
+                      .attr('x', function(d, i) {return (20+i*box_size)})
+                    .attr('y', legendLabelsHeight)    
+              ; 
+              break;    
 
         case "p_patrick":
         clearLegend();
