@@ -32,12 +32,13 @@
         <p>Sort by:</p>
         <select class="select_menu" ng-model="orderProp">
           <option value="name">Name</option>
-          <option value="10_to_14">Baker Electoral Gains/Losses '10 - '14</option>
+          <option value="p_baker_gains">Baker Electoral Gains '10 - '14</option>
           <option value="population">Population</option>
           <option value="r_deviance">Over/underperformance</option>
-          <option value="r_deviance_sigma">Over/underperformance (sigma)</option>
+          <!--<option value="r_deviance_sigma">GOP Over/underperformance (sigma)</option>-->
           <option value="p_participation">% Voter Turnout</option>
           <option value="percent_registered_unenrolled">% Unenrolled</option>
+          <option value="baker14">% Baker 2014</option>
           <option value="p_baker">% Baker 2010</option>
           <option value="p_patrick">% Patrick 2010</option>
           <option value="percent_registered_republicans">% Registered Republicans</option>
@@ -155,6 +156,22 @@
       <li ng-repeat="town in towns | searchName:query | orderBy:orderProp:true">
         <p class="dynamic">
                 <span class="town_name"><a href="#/towns/{{town.slug}}.html">{{town.name | uppercase}}</a></span> <span class="stat_display">{{town.p_baker | number:1}}% </span>
+            </p>
+          </li>
+        </ul> 
+
+        <ul ng-switch-when="baker14" >
+      <li ng-repeat="town in towns | searchName:query | orderBy:orderProp:true">
+        <p class="dynamic">
+                <span class="town_name"><a href="#/towns/{{town.slug}}.html">{{town.name | uppercase}}</a></span> <span class="stat_display">{{town.baker14 | number:1}}% </span>
+            </p>
+          </li>
+        </ul> 
+
+        <ul ng-switch-when="p_baker_gains" >
+      <li ng-repeat="town in towns | searchName:query | orderBy:orderProp:true">
+        <p class="dynamic">
+                <span class="town_name"><a href="#/towns/{{town.slug}}.html">{{town.name | uppercase}}</a></span> <span class="stat_display">{{town.p_baker_gains | number:1}}% </span>
             </p>
           </li>
         </ul> 

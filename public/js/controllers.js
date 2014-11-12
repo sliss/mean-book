@@ -73,10 +73,10 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
             case "p_baker_gains":
               console.log('map p_baker gains');
               clearLegend();
-                var data_domain=[0, 3, 6, 9, 12, 15];
+                var data_domain=[-3, 0, 3, 6, 9, 12, 15, 18];
               var color = d3.scale.threshold()
                 .domain(data_domain)
-                .range(['#1D21F5','#3B20D3','#5A20B1','#79208F','#981F6D','#B71F4B','#D61F29']);
+                .range(["#999DEA", "#999DEA", "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#b30000", "#7f0000", "#7f0000"]);
                d3.selectAll(".town")
                 .style("fill", function(d) { return color(d.properties.baker14 - d.properties.p_baker); });
                 var legend_width;
@@ -349,6 +349,45 @@ townBookControllers.controller('TownListCtrl', ['$scope', '$http',
               ; 
      
               break;  
+
+            case "baker14":
+            clearLegend();
+              var data_domain=[10, 20, 30, 40, 50, 60,70, 80, 90, 100];
+              var color = d3.scale.threshold()
+                .domain(data_domain)
+                .range(["#fff7ec", "#fee8c8", "#fdd49e", "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#b30000", "#7f0000"]);
+               d3.selectAll(".town")
+                .style("fill", function(d) { return color(d.properties.baker14); });
+                var legend_width;
+
+              var legend = d3.select("legendBoxes").append("svg")
+                .attr("width", 210)
+                .attr("height", box_size); 
+
+              var legend_labels = d3.select("legendLabels").append("svg")
+                .attr("width", 231)
+                .attr("height", legendLabelsHeight);     
+
+              legend.selectAll("legend_box").data(data_domain).enter()
+                  .append('rect')
+                    .attr('width',box_size)
+                    .attr('height',box_size)
+                    .style('fill',function(d) { return color(d); })  
+                    .attr('x', function(d, i) {return (i*box_size)})
+                    .attr('y', 0) 
+                  ; 
+                  
+
+              legend_labels.selectAll("legend_label").data(data_domain).enter()
+                .append('text')
+                      .text(function (d) {return d + '%'})
+                      .style('fill',legendLabelsColor)
+                      .style("text-anchor", "left")
+                      .attr('font-size','10px')
+                      .attr('x', function(d, i) {return (20+i*box_size)})
+                    .attr('y', legendLabelsHeight)    
+              ; 
+              break;
 
             case "p_baker":
             clearLegend();
