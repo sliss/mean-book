@@ -662,7 +662,7 @@ townBookControllers.controller('InsightsCtrl', ['$scope', '$http',
       d3.select("legendLabels").select('svg').remove();
     }  
  
-    $scope.orderProp = 'baker14';
+    $scope.orderProp = 'p_baker_gains';
 
     $scope.keys = [];
     $scope.comments = [];

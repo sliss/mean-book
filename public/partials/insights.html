@@ -505,7 +505,7 @@
       <ul ng-switch-when="baker14" >
       <li ng-repeat="town in towns | searchName:query | orderBy:orderProp:true">
         <p class="dynamic">
-                <span class="town_name"><statkey>{{town.name | uppercase}}</statkey></span> <span class="stat_display">{{town.baker14 | number:1}}% </span>
+                <span class="town_name"><a href="#/towns/{{town.slug}}">{{town.name | uppercase}}</a></span> <span class="stat_display">{{town.baker14 | number:1}}%</span>
             </p>
           </li>
         </ul>
