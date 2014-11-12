@@ -1,3 +1,4 @@
+/*
 function mapMA(){
 
 var color = d3.scale.threshold()
@@ -36,4 +37,4 @@ d3.json("MA_Towns_Topo.json", function(error, ma) {
       .attr("class", "tract-border")
       .attr("d", path);  
 });
-}
+}*/

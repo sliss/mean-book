@@ -103,10 +103,10 @@ townBookDirectives.directive('publicMap', function() {
     	link: function() {
 	        console.log("public directive confirmed.");
 
-
+			var data_domain=[-3, 0, 3, 6, 9, 12, 15, 18];
 			var color = d3.scale.threshold()
-		        .domain([10, 20, 30, 40, 50, 60, 70, 80])
-		        .range(["#fff7ec", "#fee8c8", "#fdd49e", "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#b30000", "#7f0000"]);
+                .domain(data_domain)
+                .range(["#999DEA", "#999DEA", "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#b30000", "#7f0000", "#7f0000"]);
 
 			var width = 700,
 			    height = 460;
@@ -139,7 +139,7 @@ townBookDirectives.directive('publicMap', function() {
 			    //.attr("class", function(d) { return "town " + d.properties.TOWN; })
 			    .attr("class", function(d) { return "town " + d.properties.TOWN; })
 			    .attr("title", function(d) { return "town " + d.properties.TOWN; })
-			    .style("fill", function(d) { return color(d.properties.p_unenrolled); })
+			    .style("fill", function(d) { return color(d.properties.baker14 - d.properties.p_baker); })
 			    .attr("d", path);
 
 			     
